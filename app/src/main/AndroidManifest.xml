@@ -13,6 +13,15 @@
         android:theme="@style/Theme.TMSAndroidKotlin"
         tools:targetApi="31">
         <activity
+            android:name=".MyActivity2"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.drozdova.tms.tmsandroidkotlin.SECOND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TMSAndroidKotlin</string>
+    <string name="btn_activity_2_text">Go to activity 2</string>
 </resources>
