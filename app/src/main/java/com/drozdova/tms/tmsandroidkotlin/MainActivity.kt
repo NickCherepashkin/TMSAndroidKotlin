@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn = findViewById<Button>(R.id.btn_activity_2)
+        val btn = findViewById<Button>(R.id.btn_activity)
         btn.setOnClickListener {
             startActivity(Intent("com.drozdova.tms.tmsandroidkotlin.SECOND"))
         }

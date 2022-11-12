@@ -13,11 +13,18 @@
         android:theme="@style/Theme.TMSAndroidKotlin"
         tools:targetApi="31">
         <activity
+            android:name=".MyActivity3"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MyActivity2"
             android:exported="false">
-
             <intent-filter>
                 <action android:name="com.drozdova.tms.tmsandroidkotlin.SECOND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
