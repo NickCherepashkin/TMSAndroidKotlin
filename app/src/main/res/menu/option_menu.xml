@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_a1"  >
+        <item
+            android:id="@+id/menu_open_a2"
+            android:title= "@string/menu_open_a2_text"/>
+
+        <item
+            android:id="@+id/menu_set_in_act_bar"
+            android:title= "@string/menu_set_in_act_bar_text"/>
+
+        <item
+            android:id="@+id/menu_unblock"
+            android:title= "@string/menu_unblock"/>
+
+    </group>
+    <group android:id="@+id/menu_a2">
+        <item
+            android:id="@+id/go_back_a1"
+            android:title= "@string/menu_go_back_a1_text"/>
+    </group>
+    <group android:id="@+id/menu_general">
+        <item android:id="@+id/menu_close" android:title="@string/menu_close_app_text"/>
+    </group>
+
+
+</menu>

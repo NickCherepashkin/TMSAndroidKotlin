@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TMSAndroidKotlin</string>
+
+    <string name="hint_unblock_text">Разблокируйте поле ввода в меню</string>
+    <string name="hint_enter_title_text">Введите заголовок Action Bar и заблокируйте поле в меню</string>>
+
+    <string name="menu_open_a2_text">Открыть Активити_2</string>
+    <string name="menu_set_in_act_bar_text">Передать в Action Bar</string>
+    <string name="menu_unblock">Разблокировать EditText</string>
+    <string name="menu_block">Заблокировать EditText</string>
+    <string name="menu_change_color">Поменять цвет текста</string>
+    <string name="menu_go_back_a1_text">Вернуться в Активити_1</string>
+    <string name="menu_close_app_text">Закрыть приложение</string>
+    <string name="bold_text">Текст жирный</string>
+    <string name="italic_text">Текст курсиы</string>
+    <string name="activity_title_1">Активити 1</string>
 </resources>
