@@ -18,8 +18,8 @@ class MainActivity2 : AppCompatActivity() {
 
         val tv1 = findViewById<TextView>(R.id.tv1_a2)
         val tv2 = findViewById<TextView>(R.id.tv2_a2)
-        tv1.text = intent.getStringExtra(TV_A2_BOLD_TEXT_KEY) ?: "no text"
-        tv2.text = intent.getStringExtra(TV_A2_ITALIC_TEXT_KEY) ?: "no text"
+        tv1.text = intent.getStringExtra(TV_A2_BOLD_TEXT_KEY) ?: getString(R.string.no_text)
+        tv2.text = intent.getStringExtra(TV_A2_ITALIC_TEXT_KEY) ?: getString(R.string.no_text)
 
         if (intent.hasExtra(ACTIVITY_TITLE_KEY)) {
             supportActionBar?.title = intent.getStringExtra(ACTIVITY_TITLE_KEY)

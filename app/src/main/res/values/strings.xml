@@ -13,5 +13,6 @@
     <string name="menu_close_app_text">Закрыть приложение</string>
     <string name="bold_text">Текст жирный</string>
     <string name="italic_text">Текст курсиы</string>
+    <string name="no_text">no text</string>
     <string name="activity_title_1">Активити 1</string>
 </resources>
