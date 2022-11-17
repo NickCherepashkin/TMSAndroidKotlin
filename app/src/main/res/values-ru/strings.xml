@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ТМСАндроидКотлин</string>
+    <string name="click_me">Нажми меня</string>
+    <string name="str_hello">Привет мир!!!</string>
+    <string name="str_from"> из Активиту</string>
+    <string name="close_menu_txt">Закрыть приложение</string>
+    <string name="go_back_menu_txt">Перейти на предыдущую активити</string>
+    <string name="add_contact">Добавить контакт</string>
+</resources>

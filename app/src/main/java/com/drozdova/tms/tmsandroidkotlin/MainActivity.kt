@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.teal_200)))
         supportActionBar?.setIcon(R.mipmap.ic_launcher)
-        supportActionBar?.title = "Add contact"
+        supportActionBar?.title = getString(R.string.add_contact)
 
 
         val textView = findViewById<TextView>(R.id.text_hello)
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 //            val intent = Intent(this, MainActivity2::class.java)
 //            intent.putExtra("1", textView.text.toString() + " from MainActivity")
 //            startActivity(intent)
-            startMainActivity2(this, textView.text.toString() + "from MainActivity")
+            startMainActivity2(this, textView.text.toString() + getString(R.string.str_from))
 
         }
     }

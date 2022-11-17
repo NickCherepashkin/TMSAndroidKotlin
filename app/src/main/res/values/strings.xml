@@ -5,4 +5,5 @@
     <string name="str_from"> from MainActivity</string>
     <string name="close_menu_txt">Close the app</string>
     <string name="go_back_menu_txt">Go to previous activity</string>
+    <string name="add_contact">Add contact</string>
 </resources>
