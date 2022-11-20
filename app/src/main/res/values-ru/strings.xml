@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Форма авторизации</string>
+    <string name="enter_your_login">Введите Ваш логин</string>
+    <string name="enter_your_password">Введите Ваш пароль</string>
+    <string name="log_in">Войти</string>
+    <string name="empty_login_message">login can\'t be empty</string>
+    <string name="pass_empty_message">Password can\'t be empty</string>
+</resources>

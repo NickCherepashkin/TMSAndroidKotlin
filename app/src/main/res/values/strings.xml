@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">TMSAndroidKotlin</string>
+    <string name="app_name">LOGIN FORM</string>
+    <string name="enter_your_login">Enter your login</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="log_in">Log in</string>
+    <string name="empty_login_message">login can\'t be empty</string>
+    <string name="pass_empty_message">Password can\'t be empty</string>
 </resources>
