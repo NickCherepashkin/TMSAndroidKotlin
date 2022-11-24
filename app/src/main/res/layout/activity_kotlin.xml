@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KotlinActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKotAct"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:text="@string/btn_1"
+            android:textSize="30sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKotAct2"
+            android:layout_width="wrap_content"
+            android:layout_height="500dp"
+            android:text="@string/btn_2"
+            android:textSize="30sp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

@@ -4,4 +4,6 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="name_password">Name password</string>
+    <string name="btn_2">BTN 2</string>
+    <string name="btn_1">BTN 1</string>
 </resources>

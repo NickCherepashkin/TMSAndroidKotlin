@@ -2,12 +2,15 @@ package com.drozdova.tms.tmsandroidkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.HideReturnsTransformationMethod
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.drozdova.tms.tmsandroidkotlin.KotlinActivity.Companion.goToKotlinActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -46,8 +49,11 @@ class MainActivity : AppCompatActivity() {
             }else if (etPassword.text.toString().isEmpty()) {
                 layout2.setErrorIconDrawable(R.drawable.ic_baseline_report_gmailerrorred)
                 etPassword.error = "password can't be empty"
+//                etPassword.
+                etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
 //                Toast.makeText(this, "password can't be empty", Toast.LENGTH_LONG).show()
             } else {
+                goToKotlinActivity(this)
                 tvDisplayText.text = "${etName.text} ${etPassword.text}"
             }
 
