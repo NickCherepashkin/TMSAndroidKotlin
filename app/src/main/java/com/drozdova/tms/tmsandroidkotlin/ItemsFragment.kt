@@ -11,7 +11,13 @@ import com.drozdova.tms.tmsandroidkotlin.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.model.ItemModel
 
+const val KEY_FOR_IMAGE = "image"
+const val KEY_FOR_TITLE = "title"
+const val KEY_FOR_DESCRIPTION = "description"
+const val KEY_FOR_TIME = "time"
+
 class ItemsFragment : Fragment(), ItemListener {
+
     private lateinit var itemAdapter: ItemsAdapter
 
     override fun onCreateView(
@@ -71,15 +77,17 @@ class ItemsFragment : Fragment(), ItemListener {
 
     }
 
-    override fun onClick(item: ItemModel) {
+    override fun onClick(image: Int, title: String, descript: String, time: String) {
         val detailFragment = ItemDetailFragment()
         val bundle = Bundle()
-        bundle.putInt("image", item.imageDance)
-        bundle.putInt("title", item.title)
-        bundle.putInt("description", item.description)
+        bundle.putInt(KEY_FOR_IMAGE, image)
+        bundle.putString(KEY_FOR_TITLE, title)
+        bundle.putString(KEY_FOR_DESCRIPTION, descript)
+        bundle.putString(KEY_FOR_TIME, time)
+        detailFragment.arguments = bundle
 
         parentFragmentManager.beginTransaction()
-            .add(R.id.container, ItemDetailFragment())
+            .add(R.id.container, detailFragment)
             .addToBackStack("")
             .commit()
     }

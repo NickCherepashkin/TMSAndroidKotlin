@@ -13,6 +13,7 @@ import java.util.Date
 
 class ItemViewHolder(private val itemView: View,
                      private val listener: ItemListener): ViewHolder(itemView) {
+
     fun bind(item: ItemModel) {
         val imageDance = itemView.findViewById<ShapeableImageView>(R.id.imv_item)
         val tvTitle = itemView.findViewById<MaterialTextView>(R.id.tv_item_title)
@@ -38,7 +39,7 @@ class ItemViewHolder(private val itemView: View,
         }
 
         itemView.setOnClickListener {
-            listener.onClick()
+            listener.onClick(item.imageDance, item.title, item.description, tvTime.text.toString())
         }
     }
 

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textview.MaterialTextView
 
 class ItemDetailFragment : Fragment() {
 
@@ -18,5 +20,17 @@ class ItemDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val imvDancer = view.findViewById<ShapeableImageView>(R.id.imv_item_detail)
+        val tvTitle = view.findViewById<MaterialTextView>(R.id.tv_item_title_detail)
+        val tvDescription = view.findViewById<MaterialTextView>(R.id.tv_item_description_detail)
+        val tvTime = view.findViewById<MaterialTextView>(R.id.tv_item_time_detail)
+
+        val bundle = arguments
+        bundle?.let {saveBundle ->
+            imvDancer.setBackgroundResource(saveBundle.getInt(KEY_FOR_IMAGE))
+            tvTitle.text = saveBundle.getString(KEY_FOR_TITLE)
+            tvDescription.text = saveBundle.getString(KEY_FOR_DESCRIPTION)
+            tvTime.text = saveBundle.getString(KEY_FOR_TIME)
+        }
     }
 }
