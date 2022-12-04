@@ -11,8 +11,8 @@ class ItemsAdapter(val itemListener: ItemListener):RecyclerView.Adapter<ItemView
 
     private var itemsList = mutableListOf<ItemModel>()
 
-    fun submitList(itemsList: MutableList<ItemModel>) {
-        this.itemsList = itemsList
+    fun submitList(itemsList: List<ItemModel>) {
+        this.itemsList = itemsList.toMutableList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

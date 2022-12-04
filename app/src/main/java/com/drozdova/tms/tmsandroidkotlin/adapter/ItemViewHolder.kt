@@ -23,8 +23,7 @@ class ItemViewHolder(private val itemView: View,
 
         imageDance.setBackgroundResource(item.imageDance)
         tvTitle.text = item.title
-        tvTime.text = Calendar.getInstance().time.toString()
-        tvTime.text = SimpleDateFormat("hh:mm:ss a").format(Date())
+        tvTime.text = item.time
         imageStar.setBackgroundResource(R.drawable.black_star)
 
 
