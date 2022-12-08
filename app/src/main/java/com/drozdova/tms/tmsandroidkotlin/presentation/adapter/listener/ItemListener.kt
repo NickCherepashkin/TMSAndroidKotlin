@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.listener
+package com.drozdova.tms.tmsandroidkotlin.presentation.adapter.listener
 
 interface ItemListener {
     fun onClick()

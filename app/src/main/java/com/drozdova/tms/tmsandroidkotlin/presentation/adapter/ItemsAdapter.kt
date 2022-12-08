@@ -1,10 +1,11 @@
-package com.drozdova.tms.tmsandroidkotlin.adapter
+package com.drozdova.tms.tmsandroidkotlin.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drozdova.tms.tmsandroidkotlin.R
-import com.drozdova.tms.tmsandroidkotlin.listener.ItemListener
+import com.drozdova.tms.tmsandroidkotlin.databinding.ListItemBinding
+import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.model.ItemsModel
 
 class ItemsAdapter(
@@ -18,8 +19,8 @@ class ItemsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ItemsViewHolder(view, itemsListener)
+        val viewBinding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemsViewHolder(viewBinding, itemsListener)
     }
 
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
