@@ -8,5 +8,6 @@
     <string name="hint_enter_pass_txt">Enter your password</string>
     <string name="onboarding_txt">onBoarding</string>
     <string name="btn_on_recycler_view_txt">on Recycler View</string>
-    <string name="error_empty_field">ERROR! Field in empty...</string>
+    <string name="error_empty_field">ERROR! Field in empty…</string>
+    <string name="logged_in_txt">\ logged in</string>
 </resources>

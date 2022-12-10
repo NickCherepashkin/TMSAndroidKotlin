@@ -1,10 +1,9 @@
-package com.drozdova.tms.tmsandroidkotlin.presentation
+package com.drozdova.tms.tmsandroidkotlin.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.LoginFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
