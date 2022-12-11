@@ -1,15 +1,13 @@
 package com.drozdova.tms.tmsandroidkotlin.data.repository
 
 import android.content.Context
-import com.drozdova.tms.tmsandroidkotlin.domain.repository.LoginRepository
+import com.drozdova.tms.tmsandroidkotlin.domain.repository.OnBoardingRepository
 import com.drozdova.tms.tmsandroidkotlin.utils.SharedPrefConstants
 
-class LoginRepositoryImpl(context: Context) : LoginRepository {
-
+class OnBoardingRepositoryImpl(context: Context) : OnBoardingRepository {
     private val file = context.getSharedPreferences(SharedPrefConstants.SHARED_PREFS_FILE, Context.MODE_PRIVATE)
 
-    override fun saveLogin(login: String) {
-        file.edit().putString(SharedPrefConstants.KEY_NAME, login).apply()
+    override fun getName() : String{
+        return file.getString(SharedPrefConstants.KEY_NAME, "") ?: ""
     }
-
 }

@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.data.repository.LoginRepositoryImpl
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
+import com.drozdova.tms.tmsandroidkotlin.domain.LoginInteractor
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginModelFactory
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
 
 
@@ -15,7 +18,7 @@ class LoginFragment : Fragment() {
     private var _viewBinding : FragmentLoginBinding? = null
     val viewBinding get() = _viewBinding!!
 
-    private val viewModel : LoginViewModel by viewModels()
+    private val viewModel : LoginViewModel by viewModels {LoginModelFactory(LoginInteractor(LoginRepositoryImpl(requireContext())))}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
