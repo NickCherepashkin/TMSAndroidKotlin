@@ -14,13 +14,13 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.OnBoardingView
 
 class OnBoardingFragment : Fragment(), OnBoardingView {
     private var _viewBinding : FragmentOnBoardingBinding? = null
-    val viewBinding get() = _viewBinding!!
+    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _viewBinding = FragmentOnBoardingBinding.inflate(inflater, container, false)
+        _viewBinding = FragmentOnBoardingBinding.inflate(inflater)
         return viewBinding.root
     }
 
@@ -32,7 +32,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
         viewBinding.btnOnRecview.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,ListFragment())
+                .replace(R.id.fragment_container, ListFragment())
                 .addToBackStack("")
                 .commit()
         }
@@ -41,5 +41,4 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
     override fun setName(name: String) {
         viewBinding.materialTextView2.text = name + getString(R.string.logged_in_txt)
     }
-
 }

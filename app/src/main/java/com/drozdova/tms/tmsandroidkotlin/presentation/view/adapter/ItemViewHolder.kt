@@ -1,16 +1,36 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.viewbinding.ViewBinding
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.data.model.Item
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
-import java.util.Calendar
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemsListener
+import java.text.SimpleDateFormat
+import java.util.*
 
-class ItemViewHolder(private val view: ItemBinding) : ViewHolder(view.root) {
+private const val DATE_FORMAT = "hh:mm:ss a"
+
+class ItemViewHolder(
+    private val view: ItemBinding,
+    private val itemsListener: ItemsListener
+) : ViewHolder(view.root) {
     fun bind(item : Item) {
+        var isSelected = false
         view.itemImage.setBackgroundResource(item.image)
         view.itemTitle.text = item.title
-        view.itemDate.text = Calendar.getInstance().time.toString()
+        view.itemDate.text = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(Date())
+        view.itemImageStar.setBackgroundResource(R.drawable.black_star)
+
+        view.itemImageStar.setOnClickListener {
+            isSelected = if (!isSelected) {
+                view.itemImageStar.setBackgroundResource(R.drawable.yellow_star)
+                true
+
+            } else {
+                view.itemImageStar.setBackgroundResource(R.drawable.black_star)
+                false
+            }
+            itemsListener.isItemSelected(isSelected)
+        }
     }
 }

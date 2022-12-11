@@ -11,4 +11,6 @@
     <string name="error_empty_field">ERROR! Field in empty…</string>
     <string name="logged_in_txt">\ logged in</string>
     <string name="styles_of_dance_txt">Styles of dance</string>
+    <string name="not_checked_txt">Not checked</string>
+    <string name="checked_txt">Checked</string>
 </resources>
