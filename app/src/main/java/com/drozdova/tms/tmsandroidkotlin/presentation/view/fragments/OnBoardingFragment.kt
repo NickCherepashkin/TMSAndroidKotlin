@@ -29,6 +29,13 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
         val presenter = OnBoardingPresenter(this, LoginInteractor(LoginRepositoryImpl(requireContext())))
         presenter.setName()
+
+        viewBinding.btnOnRecview.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,ListFragment())
+                .addToBackStack("")
+                .commit()
+        }
     }
 
     override fun setName(name: String) {

@@ -10,4 +10,5 @@
     <string name="btn_on_recycler_view_txt">on Recycler View</string>
     <string name="error_empty_field">ERROR! Field in empty…</string>
     <string name="logged_in_txt">\ logged in</string>
+    <string name="styles_of_dance_txt">Styles of dance</string>
 </resources>
