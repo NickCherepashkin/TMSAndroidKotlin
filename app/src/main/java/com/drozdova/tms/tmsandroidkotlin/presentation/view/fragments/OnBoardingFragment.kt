@@ -10,6 +10,7 @@ import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.data.repository.OnBoardingRepositoryImpl
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
 import com.drozdova.tms.tmsandroidkotlin.domain.OnBoardingInteractor
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ListViewModel
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardModelFactory
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
 
