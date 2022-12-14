@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 
 class OnBoardingFragment : Fragment() {
     private var _binding : FragmentOnBoardingBinding? = null
@@ -14,7 +15,7 @@ class OnBoardingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOnBoardingBinding.inflate(inflater)
         return binding.root
     }
@@ -24,7 +25,7 @@ class OnBoardingFragment : Fragment() {
 
         binding.btnShowList.setOnClickListener {
             val fragment = parentFragmentManager.beginTransaction()
-                fragment.replace(R.id.fragments_container, ItemsFragment())
+            fragment.replace(R.id.fragments_container, ItemsFragment())
                 .addToBackStack("sss")
                 .commit()
         }
