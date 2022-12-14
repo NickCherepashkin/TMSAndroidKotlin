@@ -1,10 +1,10 @@
-package com.drozdova.tms.tmsandroidkotlin.presentation.adapter
+package com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemListener
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.data.model.Item
 
 class ItemsAdapter(private val itemsListener: ItemListener) : RecyclerView.Adapter<ItemViewHolder>() {

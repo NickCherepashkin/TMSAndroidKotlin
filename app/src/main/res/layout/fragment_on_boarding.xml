@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.OnBoardingFragment">
+    tools:context=".presentation.view.fragments.OnBoardingFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_on_board"
