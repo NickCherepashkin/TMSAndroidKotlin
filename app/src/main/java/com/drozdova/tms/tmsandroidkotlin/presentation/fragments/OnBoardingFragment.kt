@@ -1,12 +1,12 @@
-package com.drozdova.tms.tmsandroidkotlin
+package com.drozdova.tms.tmsandroidkotlin.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
-import com.drozdova.tms.tmsandroidkotlin.model.Item
 
 class OnBoardingFragment : Fragment() {
     private var _binding : FragmentOnBoardingBinding? = null

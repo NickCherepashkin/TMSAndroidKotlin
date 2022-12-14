@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin
+package com.drozdova.tms.tmsandroidkotlin.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

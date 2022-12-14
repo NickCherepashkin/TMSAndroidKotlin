@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin
+package com.drozdova.tms.tmsandroidkotlin.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,15 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.drozdova.tms.tmsandroidkotlin.adapter.ItemsAdapter
+import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
-import com.drozdova.tms.tmsandroidkotlin.listener.ItemListener
-import com.drozdova.tms.tmsandroidkotlin.model.Item
+import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemListener
+import com.drozdova.tms.tmsandroidkotlin.data.repository.ItemsRepositoryImpl
+import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 
 class ItemsFragment : Fragment(), ItemListener {
     private var _binding : FragmentItemsBinding? = null
     val binding get() = _binding!!
     private lateinit var adapter: ItemsAdapter
+
+    private lateinit var interactor : ItemsInteractor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,57 +31,13 @@ class ItemsFragment : Fragment(), ItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listItems = listOf(
-            Item(
-                R.drawable.android,
-                "Android",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.apple,
-                "IOS",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.dot_net,
-                ".Net",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.delphi,
-                "Delphi",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.java,
-                "Java",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.python,
-                "Python",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.js,
-                "Java Script",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.android,
-                "Android",
-                "26.02.2022"
-            ),
-            Item(
-                R.drawable.apple,
-                "IOS",
-                "26.02.2022"
-            )
-        )
+        interactor = ItemsInteractor(ItemsRepositoryImpl())
 
         adapter = ItemsAdapter(this)
         binding.rvItemsList.adapter = adapter
-        adapter.submit(listItems)
+
+        val list = interactor.getItemslist()
+        adapter.submit(list)
     }
 
     override fun itemDetailsClick(name: String, date: String, imageView: Int) {
