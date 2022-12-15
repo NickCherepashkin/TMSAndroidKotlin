@@ -8,6 +8,8 @@ class OnBoardingViewModel : ViewModel() {
     private val _btnShowList = MutableLiveData<Unit?>()
     val btnShowList: LiveData<Unit?> = _btnShowList
 
+    val onBoardingText = MutableLiveData<String>()
+
     fun onBtnClick() {
         _btnShowList.value = Unit
     }

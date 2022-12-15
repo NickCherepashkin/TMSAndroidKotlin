@@ -3,6 +3,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.LoginFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.OnBoardingFragment
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragment = supportFragmentManager.beginTransaction()
-        fragment.add(R.id.fragments_container, OnBoardingFragment())
+        fragment.add(R.id.fragments_container, LoginFragment())
                 .commit()
     }
 }

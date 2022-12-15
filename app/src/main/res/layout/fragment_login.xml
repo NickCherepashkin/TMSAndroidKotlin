@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel" />
+
+        <variable
+            name="viewHandler"
+            type="com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.LoginFragment.ViewHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.view.fragments.LoginFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.069"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/enter_your_login_txt"
+            android:text="@={viewModel.userName}"/>
+
+        <EditText
+            android:id="@+id/et_user_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_name"
+            app:layout_constraintVertical_bias="0.059"
+            android:layout_marginHorizontal="30dp"
+            android:hint="@string/enter_your_password_txt"
+            android:text="@={viewModel.userPassword}"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_pass"
+            app:layout_constraintVertical_bias="0.209"
+            tools:layout_editor_absoluteX="16dp"
+            android:layout_marginHorizontal="60dp"
+            android:text="@string/btn_log_in_txt"
+            android:onClick="@{() -> viewModel.showCreats()}"/>
+
+        <TextView
+            android:id="@+id/tv_login_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:layout_constraintVertical_bias="0.134"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@={viewModel.userCreats}"/>
+
+        <Button
+            android:id="@+id/btn_on_boarding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="go to onboarding"
+            android:onClick="@{() -> viewHandler.goToTheOnBoarding()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_show" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
