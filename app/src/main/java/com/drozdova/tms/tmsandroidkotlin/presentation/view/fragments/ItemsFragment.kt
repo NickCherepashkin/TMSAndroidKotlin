@@ -10,18 +10,17 @@ import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
-import com.drozdova.tms.tmsandroidkotlin.data.repository.ItemsRepositoryImpl
-import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsModelFactory
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation.setFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemListener {
     private var _binding : FragmentItemsBinding? = null
     val binding get() = _binding!!
 
-    private val viewModel : ItemsViewModel by viewModels { ItemsModelFactory(ItemsInteractor(ItemsRepositoryImpl())) }
+    private val viewModel : ItemsViewModel by viewModels()
 
     private lateinit var adapter: ItemsAdapter
 

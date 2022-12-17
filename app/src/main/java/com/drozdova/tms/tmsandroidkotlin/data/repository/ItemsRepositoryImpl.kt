@@ -3,8 +3,9 @@ package com.drozdova.tms.tmsandroidkotlin.data.repository
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.data.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
+import javax.inject.Inject
 
-class ItemsRepositoryImpl : ItemsRepository {
+class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {
     override fun getItemsList() : List<Item> {
         val listItems = listOf(
             Item(

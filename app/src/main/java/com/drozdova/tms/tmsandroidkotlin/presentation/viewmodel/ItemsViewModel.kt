@@ -5,8 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.drozdova.tms.tmsandroidkotlin.data.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ItemsViewModel(private val interactor: ItemsInteractor) : ViewModel() {
+@HiltViewModel
+class ItemsViewModel @Inject constructor(
+    private val interactor: ItemsInteractor
+) : ViewModel() {
     private val _itemsList = MutableLiveData<List<Item>>()
     val itemsList : LiveData<List<Item>> = _itemsList
 
