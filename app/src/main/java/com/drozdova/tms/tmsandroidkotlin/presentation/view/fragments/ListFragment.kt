@@ -16,14 +16,18 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemsListener
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@AndroidEntryPoint
 class ListFragment : Fragment(), ListView, ItemsListener {
     private var _bindingList : FragmentListBinding? = null
     val bindingList get() = _bindingList!!
 
     private lateinit var adapter: ItemsAdapter
 
-    lateinit var presenter: ListPresenter
+    @Inject lateinit var presenter: ListPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +40,6 @@ class ListFragment : Fragment(), ListView, ItemsListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = ListPresenter(this, ListInteractor(ItemsRepositoryImpl()))
         adapter = ItemsAdapter(this)
         bindingList.recViewList.adapter = adapter
         bindingList.recViewList.layoutManager = LinearLayoutManager(context)
