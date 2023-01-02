@@ -29,15 +29,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.viewHandler = ViewHandler()
-        binding.lifecycleOwner = viewLifecycleOwner
-    }
+        binding.btnOnBoarding.setOnClickListener {
 
-    inner class ViewHandler {
-        fun goToTheOnBoarding() {
-            setFragment(parentFragmentManager, OnBoardingFragment())
         }
     }
-
 }
