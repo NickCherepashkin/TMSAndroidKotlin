@@ -44,6 +44,7 @@ class ListFragment : Fragment(), ListView, ItemsListener {
         bindingList.recViewList.adapter = adapter
         bindingList.recViewList.layoutManager = LinearLayoutManager(context)
 
+        presenter.setView(this)
         presenter.getData()
     }
 

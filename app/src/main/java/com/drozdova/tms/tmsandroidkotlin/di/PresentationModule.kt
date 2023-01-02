@@ -11,17 +11,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class PresentationModule {
+class PresentationModule {
 
     @Provides
-    fun provideListPresenter(listView: ListView, listInteractor: ListInteractor) : ListPresenter{
-        return ListPresenter(listView, listInteractor)
-    }
-
-    companion object {
-        @Provides
-        fun provideListPresenter(listView: ListView, listInteractor: ListInteractor) : ListPresenter{
-            return ListPresenter(listView, listInteractor)
-        }
+    fun provideListPresenter(listInteractor: ListInteractor) : ListPresenter{
+        return ListPresenter(listInteractor)
     }
 }
