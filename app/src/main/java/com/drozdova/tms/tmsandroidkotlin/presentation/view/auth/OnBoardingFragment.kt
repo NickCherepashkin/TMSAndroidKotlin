@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments
+package com.drozdova.tms.tmsandroidkotlin.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation.setFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
 

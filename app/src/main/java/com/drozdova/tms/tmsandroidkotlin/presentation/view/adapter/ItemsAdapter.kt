@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
-import com.drozdova.tms.tmsandroidkotlin.data.model.Item
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 
 class ItemsAdapter(private val itemsListener: ItemListener) : RecyclerView.Adapter<ItemViewHolder>() {
     private var _binding : ItemBinding? = null

@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.data.model
+package com.drozdova.tms.tmsandroidkotlin.model
 
 data class Item(
     val image: Int,

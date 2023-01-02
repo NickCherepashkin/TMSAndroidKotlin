@@ -1,6 +1,8 @@
 package com.drozdova.tms.tmsandroidkotlin.di
 
+import com.drozdova.tms.tmsandroidkotlin.domain.AuthInteractor
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
+import com.drozdova.tms.tmsandroidkotlin.domain.repository.AuthRepository
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import dagger.Module
 import dagger.Provides
@@ -15,7 +17,13 @@ class DomainModule {
 
     @Provides
     @Singleton
-    fun provideItemRepository( itemRepository: ItemsRepository) : ItemsInteractor{
+    fun provideItemsInteractor( itemRepository: ItemsRepository) : ItemsInteractor{
         return ItemsInteractor(itemRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthInteractor( authRepository: AuthRepository) : AuthInteractor {
+        return AuthInteractor(authRepository)
     }
 }

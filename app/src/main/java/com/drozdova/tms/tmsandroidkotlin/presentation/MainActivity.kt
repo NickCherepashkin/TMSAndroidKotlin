@@ -2,19 +2,37 @@ package com.drozdova.tms.tmsandroidkotlin.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.activity.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.LoginFragment
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.fragments.OnBoardingFragment
+import com.drozdova.tms.tmsandroidkotlin.databinding.ActivityMainBinding
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private var _binding: ActivityMainBinding? = null
+    private val viewModel : MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(_binding!!.root)
 
-        val fragment = supportFragmentManager.beginTransaction()
-        fragment.add(R.id.fragments_container, LoginFragment())
-                .commit()
+        viewModel.userIsexist()
+
+        viewModel.userExist.observe(this) {
+            val fragment = supportFragmentManager.beginTransaction()
+            fragment.add(R.id.fragments_container,
+                when(it) {
+                    true -> HomeFragment()
+                    false -> LoginFragment()
+                }
+            )
+                fragment.commit()
+        }
     }
 }

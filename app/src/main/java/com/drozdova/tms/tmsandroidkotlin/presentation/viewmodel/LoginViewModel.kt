@@ -1,15 +1,19 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.drozdova.tms.tmsandroidkotlin.domain.AuthInteractor
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
-    val userName = MutableLiveData<String>()
-    val userPassword = MutableLiveData<String>()
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val authInteractor: AuthInteractor) : ViewModel() {
+    private val _nav = MutableLiveData<Unit?>()
+    val nav : LiveData<Unit?> = _nav
 
-    val userCreats = MutableLiveData<String>()
-
-    fun showCreats() {
-        userCreats.value = "${userName.value.toString()} \n${userPassword.value.toString()}"
+    fun loginUser(userName: String, userPassword: String) {
+        authInteractor.loginUser(userName, userPassword)
+        _nav.value = Unit
     }
 }

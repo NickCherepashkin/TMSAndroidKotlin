@@ -1,7 +1,7 @@
-package com.drozdova.tms.tmsandroidkotlin.data.repository
+package com.drozdova.tms.tmsandroidkotlin.data.items
 
 import com.drozdova.tms.tmsandroidkotlin.R
-import com.drozdova.tms.tmsandroidkotlin.data.model.Item
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import javax.inject.Inject
 

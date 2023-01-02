@@ -3,7 +3,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
-import com.drozdova.tms.tmsandroidkotlin.data.model.Item
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 
 class ItemViewHolder(
     private val view : ItemBinding,

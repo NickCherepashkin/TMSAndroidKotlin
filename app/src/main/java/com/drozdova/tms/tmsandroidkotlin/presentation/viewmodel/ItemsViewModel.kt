@@ -3,7 +3,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.drozdova.tms.tmsandroidkotlin.data.model.Item
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

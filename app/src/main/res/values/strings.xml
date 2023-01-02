@@ -7,5 +7,6 @@
     <string name="enter_your_password_txt">Enter your password</string>
     <string name="enter_your_login_txt">Enter your login</string>
     <string name="btn_log_in_txt">log in</string>
+    <string name="logout_txt">logout</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
