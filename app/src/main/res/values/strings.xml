@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TMSAndroidKotlin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_in_txt">log in</string>
+    <string name="enter_your_password_txt">Enter your password</string>
+    <string name="enter_your_login_txt">Enter your login</string>
+    <string name="go_to_on_boarding_txt">go to onBoarding</string>
+    <string name="home_page_txt">HOME PAGE</string>
 </resources>
