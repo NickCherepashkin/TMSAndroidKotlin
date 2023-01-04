@@ -40,10 +40,13 @@ class HomeFragment : Fragment() {
             viewModel.goToOnBoarding()
         }
 
-        viewModel.nav.observe(viewLifecycleOwner){
+        viewModel.visibility.observe(viewLifecycleOwner){
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, OnBoardingFragment())
-                .addToBackStack("")
+                .replace(R.id.fragment_container,
+                when(it) {
+                    true -> OnBoardingFragment()
+                    false -> ItemsListFragment()
+                })
                 .commit()
         }
     }

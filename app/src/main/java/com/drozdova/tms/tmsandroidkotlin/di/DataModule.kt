@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.drozdova.tms.tmsandroidkotlin.data.auth.LoginRepositoryImpl
+import com.drozdova.tms.tmsandroidkotlin.data.auth.OnBoardingRepositoryImpl
 import com.drozdova.tms.tmsandroidkotlin.data.items.ItemsRepositoryImpl
 import com.drozdova.tms.tmsandroidkotlin.data.sharedprefs.SharedPreferencesHelper
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginRepository
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsRepository
+import com.drozdova.tms.tmsandroidkotlin.domain.onboarding.OnBoardingRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -24,6 +26,9 @@ abstract class DataModule {
 
     @Binds
     abstract fun binLoginRepository(loginRepositoryImpl:LoginRepositoryImpl) : LoginRepository
+
+    @Binds
+    abstract fun binOnBoardingRepository(onBoardingRepositoryImpl: OnBoardingRepositoryImpl) : OnBoardingRepository
 
     companion object {
         private const val SP_KEY = "SP_KEY"

@@ -43,6 +43,6 @@ class OnBoardingFragment : Fragment(){
 
     override fun onDestroy() {
         super.onDestroy()
-
+        viewModel.setVisibility(false)
     }
 }
