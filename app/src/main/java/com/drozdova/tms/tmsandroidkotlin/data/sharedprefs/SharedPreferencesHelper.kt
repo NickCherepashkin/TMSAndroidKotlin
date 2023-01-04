@@ -30,9 +30,18 @@ class SharedPreferencesHelper @Inject constructor(
         saveUserPass(null)
     }
 
+    fun setVisibilityOnBoarding(visibility: Boolean) {
+        sharedPreferences.edit().putBoolean(ONBOARDING_IS_VISIBLE, visibility).apply()
+    }
+
+    fun isVisibleOnBoarding() : Boolean{
+        return sharedPreferences.getBoolean(ONBOARDING_IS_VISIBLE, false)
+    }
+
     companion object {
         private const val USER_NAME = "USER_NAME"
         private const val USER_PASSWORD = "USER_PASSWORD"
         private const val EMPTY_STRING = ""
+        private const val ONBOARDING_IS_VISIBLE = "IS_VISIBLE"
     }
 }

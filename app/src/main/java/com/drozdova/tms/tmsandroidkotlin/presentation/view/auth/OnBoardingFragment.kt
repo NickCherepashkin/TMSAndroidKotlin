@@ -36,8 +36,6 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         viewBinding.btnOnRecview.setOnClickListener {
             presenter.showItemsList()
         }
-
-
     }
 
     override fun showList() {
@@ -45,6 +43,12 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
             .replace(R.id.fragment_container, ItemsListFragment())
             .addToBackStack("")
             .commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        
     }
 
 

@@ -11,6 +11,7 @@ class LoginRepositoryImpl @Inject constructor(
     override fun saveLogin(login: String, password: String) {
         sharedPreferencesHelper.saveUserName(login)
         sharedPreferencesHelper.saveUserPass(password)
+        sharedPreferencesHelper.setVisibilityOnBoarding(true)
     }
 
     override fun showUserCreds() : String{
@@ -23,6 +24,7 @@ class LoginRepositoryImpl @Inject constructor(
 
     override fun logout() {
         sharedPreferencesHelper.logout()
+        sharedPreferencesHelper.setVisibilityOnBoarding(true)
     }
 
 }
