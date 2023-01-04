@@ -3,36 +3,39 @@ package com.drozdova.tms.tmsandroidkotlin.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.ActivityMainBinding
+import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.MainPresenter
+import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.MainView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
     private var _binding: ActivityMainBinding? = null
-    private val viewModel : MainViewModel by viewModels()
+
+    @Inject lateinit var presenter : MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding!!.root)
 
-        viewModel.userIsexist()
+        presenter.setMainView(this)
+        presenter.userIsExist()
+    }
 
-        viewModel.userExist.observe(this) {
-            val fragment = supportFragmentManager.beginTransaction()
-            fragment.add(R.id.fragments_container,
-                when(it) {
-                    true -> HomeFragment()
-                    false -> LoginFragment()
-                }
-            )
-                fragment.commit()
-        }
+    override fun userIsExist(doesUserExisr : Boolean) {
+        val fragment = supportFragmentManager.beginTransaction()
+        fragment.add(R.id.fragments_container,
+            when(doesUserExisr) {
+                true -> HomeFragment()
+                false -> LoginFragment()
+            }
+        )
+        fragment.commit()
     }
 }

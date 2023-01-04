@@ -5,27 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentHomeBinding
-import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
+import com.drozdova.tms.tmsandroidkotlin.model.UserModel
+import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.HomePresenter
+import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.HomeView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.OnBoardingFragment
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.HomeViewModel
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeView {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels()
+    @Inject lateinit var presenter: HomePresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,18 +33,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.showUserData()
+        presenter.setHomeView(this)
+        presenter.showUserCreds()
 
         binding.btnOnBoarding.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragments_container, OnBoardingFragment())
-                .commit()
+            presenter.goToOnBoarding()
         }
+    }
 
+    override fun showUserCreds(userModel: UserModel) {
+        binding.tvUserCreds.text = "${userModel.name} ${userModel.pass}"
+    }
 
-        viewModel.userCreds.observe(viewLifecycleOwner) { user ->
-            binding.tvUserCreds.text = "${user.name} ${user.pass}"
-        }
+    override fun goToOnBoarding() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragments_container, OnBoardingFragment())
+            .commit()
     }
 
 }
