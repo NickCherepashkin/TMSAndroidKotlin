@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.LoginFragment">
+    tools:context=".presentation.view.auth.LoginFragment"
+    android:background="@color/fon_color">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etl_login"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tv_autorization"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.102"
+        android:layout_marginHorizontal="20dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157"
-        android:layout_margin="50dp"
-        android:hint="@string/enter_your_login_txt">
+        app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+        app:layout_constraintVertical_bias="0.272"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/et_fon_color"
+        android:hint="@string/hint_enter_email_txt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etl_pass"
+        android:id="@+id/til_pass"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etl_login"
-        app:layout_constraintVertical_bias="0.135"
-        android:layout_margin="50dp"
-        android:hint="@string/enter_your_password_txt">
+        app:layout_constraintTop_toBottomOf="@+id/til_login"
+        app:layout_constraintVertical_bias="0.164"
+        android:layout_marginHorizontal="30sp"
+        android:background="@color/et_fon_color"
+        android:hint="@string/hint_enter_pass_txt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_in_txt"
+        android:layout_marginBottom="180dp"
+        android:text="@string/btn_login_txt"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etl_pass"
-        app:layout_constraintVertical_bias="0.321"
-        android:layout_margin="70dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/til_pass"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

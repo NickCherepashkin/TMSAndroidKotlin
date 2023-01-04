@@ -2,9 +2,19 @@
     <string name="app_name">TMSAndroidKotlin</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="log_in_txt">log in</string>
-    <string name="enter_your_password_txt">Enter your password</string>
-    <string name="enter_your_login_txt">Enter your login</string>
-    <string name="go_to_on_boarding_txt">go to onBoarding</string>
+    <string name="tv_autorization">Autorization</string>
+    <string name="btn_login_txt">login</string>
+    <string name="hint_enter_email_txt">Enter your e-mail</string>
+    <string name="hint_enter_pass_txt">Enter your password</string>
+    <string name="onboarding_txt">onBoarding</string>
+    <string name="btn_on_recycler_view_txt">on Recycler View</string>
+    <string name="error_empty_field">ERROR! Field in empty...</string>
+    <string name="logged_in_txt">\ logged in</string>
+    <string name="styles_of_dance_txt">Styles of dance</string>
+    <string name="not_checked_txt">Not checked</string>
+    <string name="checked_txt">Checked</string>
     <string name="home_page_txt">HOME PAGE</string>
+    <string name="go_to_onboarding_txt">go to onBoarding</string>
+    <string name="is_log_in_txt">is log in</string>
+    <string name="log_out_txt">log out</string>
 </resources>
