@@ -5,21 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentDetailsBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.DetailsPresenter
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.DetailsView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.DetailsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment(), DetailsView {
+class DetailsFragment : Fragment() {
     private var _binding : FragmentDetailsBinding? = null
     val binding get() = _binding!!
 
-    @Inject lateinit var presenter : DetailsPresenter
+    private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,16 +42,14 @@ class DetailsFragment : Fragment(), DetailsView {
             binding.tvTitleItemDetails.text = name
         }
 
-        presenter.setDetailsView(this)
-
         binding.btnLogOut.setOnClickListener {
-            presenter.logout()
+            viewModel.logoutUser()
         }
-    }
 
-    override fun logout() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, LoginFragment())
-            .commit()
+        viewModel.nav.observe(viewLifecycleOwner) {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, LoginFragment())
+                .commit()
+        }
     }
 }

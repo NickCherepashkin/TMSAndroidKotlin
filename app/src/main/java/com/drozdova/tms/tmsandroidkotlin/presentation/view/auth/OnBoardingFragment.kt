@@ -5,20 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.OnBoardingPresenter
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.OnBoardingView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsListFragment
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class OnBoardingFragment : Fragment(), OnBoardingView {
+class OnBoardingFragment : Fragment(){
     private var _viewBinding : FragmentOnBoardingBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    @Inject lateinit var presenter : OnBoardingPresenter
+    private val viewModel: OnBoardingViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,25 +30,19 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.setOnBoardingView(this)
-
         viewBinding.btnOnRecview.setOnClickListener {
-            presenter.showItemsList()
+            viewModel.showList()
         }
-    }
 
-    override fun showList() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, ItemsListFragment())
-            .addToBackStack("")
-            .commit()
+        viewModel.nav.observe(viewLifecycleOwner) {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ItemsListFragment())
+                .commit()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        
     }
-
-
 }

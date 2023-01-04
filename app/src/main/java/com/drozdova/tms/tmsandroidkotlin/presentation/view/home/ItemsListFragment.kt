@@ -6,26 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsListBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
-import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListPresenter
-import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListView
+import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsListViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class ItemsListFragment : Fragment(), ListView, ItemsListener {
+class ItemsListFragment : Fragment(), ItemsListener {
     private var _bindingList : FragmentItemsListBinding? = null
     val bindingList get() = _bindingList!!
 
     private lateinit var adapter: ItemsAdapter
 
-    @Inject lateinit var presenter: ListPresenter
+    private val viewModel: ItemsListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,27 +40,34 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         bindingList.recViewList.adapter = adapter
         bindingList.recViewList.layoutManager = LinearLayoutManager(context)
 
-        presenter.setView(this)
-        presenter.getData()
-    }
+        viewModel.getData()
 
-    override fun setData(list: List<Item>) {
-        adapter.submit(list)
-    }
+        viewModel.itemsList.observe(viewLifecycleOwner) { list ->
+            adapter.submit(list)
+        }
 
-    override fun goToDetails(name: String, date: String, imageView: Int) {
-        val detailsFragment = DetailsFragment()
-        val bundle = Bundle()
+        viewModel.bundle.observe(viewLifecycleOwner) { item ->
+            if (item != null) {
+                val detailsFragment = DetailsFragment()
+                val bundle = Bundle()
 
-        bundle.putString(BundleConstants.ITEM_NAME, name)
-        bundle.putString(BundleConstants.ITEM_DATE, date)
-        bundle.putInt(BundleConstants.ITEM_IMAGE, imageView)
-        detailsFragment.arguments = bundle
+                bundle.putString(BundleConstants.ITEM_NAME, item.title)
+                bundle.putString(BundleConstants.ITEM_DATE, item.date)
+                bundle.putInt(BundleConstants.ITEM_IMAGE, item.image)
+                detailsFragment.arguments = bundle
 
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, detailsFragment)
-            .addToBackStack("")
-            .commit()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, detailsFragment)
+                    .addToBackStack("")
+                    .commit()
+
+                viewModel.onItemsBack()
+            }
+        }
+
+        viewModel.msg.observe(viewLifecycleOwner) { message ->
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun isItemSelected(isSelect : Boolean) {
@@ -72,10 +77,10 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         } else {
             msg = getString(R.string.not_checked_txt)
         }
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        viewModel.imageClick(msg)
     }
 
     override fun showItemDetails(name: String, date: String, imageView: Int) {
-        presenter.goToDetails(name, date, imageView)
+        viewModel.goToDetails(name, date, imageView)
     }
 }
