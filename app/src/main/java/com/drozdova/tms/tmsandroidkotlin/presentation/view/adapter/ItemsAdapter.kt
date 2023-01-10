@@ -14,7 +14,10 @@ class ItemsAdapter(private val itemsListener: ItemListener) : RecyclerView.Adapt
     private var itemsList = mutableListOf<Item>()
 
     fun submit(list : List<Item>) {
-        itemsList = list.toMutableList()
+        itemsList.clear()
+        itemsList.addAll(list.toMutableList())
+        this.notifyDataSetChanged()
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view =ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

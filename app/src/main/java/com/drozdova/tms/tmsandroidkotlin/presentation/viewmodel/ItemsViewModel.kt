@@ -3,9 +3,11 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +25,9 @@ class ItemsViewModel @Inject constructor(
 
 
     fun getItemslist() {
-        _itemsList.value = interactor.getItemslist()
+        viewModelScope.launch {
+            _itemsList.value = interactor.getItemslist()
+        }
     }
 
     fun itemDetailsClick(name: String, date: String, image: Int) {
