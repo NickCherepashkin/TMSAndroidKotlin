@@ -1,6 +1,11 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
+import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
+import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
@@ -13,8 +18,15 @@ class HomePresenter @Inject constructor(
     }
 
     fun showUserCreds() {
-        val name = loginInteractor.getUserCreds()
-        homeView.showUserCreds(name)
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val name = loginInteractor.getUserCreds()
+                homeView.showUserCreds(name)
+            } catch (e: Exception) {
+                Log.w(ErrorMessages.WARNING, "${ErrorMessages.ERROR_MSG_GET_USER_CREDS} $e")
+            }
+        }
+
     }
 
     fun goToOnBoarding() {

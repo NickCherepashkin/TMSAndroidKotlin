@@ -9,7 +9,7 @@ class LoginInteractor @Inject constructor(
         loginRepository.saveLogin(login, password)
     }
 
-    fun getUserCreds() : String{
+    suspend fun getUserCreds() : String{
         return loginRepository.showUserCreds()
     }
 
@@ -17,7 +17,7 @@ class LoginInteractor @Inject constructor(
         return loginRepository.doesUserExist()
     }
 
-    fun logout() {
+    suspend fun logout() {
         loginRepository.logout()
     }
 }

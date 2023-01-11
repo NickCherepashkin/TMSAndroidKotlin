@@ -1,6 +1,11 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
+import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
+import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailsPresenter @Inject constructor(
@@ -13,7 +18,13 @@ class DetailsPresenter @Inject constructor(
     }
 
     fun logout() {
-        loginInteractor.logout()
-        detailsView.logout()
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                loginInteractor.logout()
+                detailsView.logout()
+            } catch (e: Exception) {
+                Log.w(ErrorMessages.WARNING, "${ErrorMessages.ERROR_MSG_LOGOUT} $e")
+            }
+        }
     }
 }

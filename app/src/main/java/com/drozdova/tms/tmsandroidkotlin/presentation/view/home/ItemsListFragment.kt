@@ -1,10 +1,12 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drozdova.tms.tmsandroidkotlin.R
@@ -15,7 +17,9 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListView
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -43,7 +47,7 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         bindingList.recViewList.layoutManager = LinearLayoutManager(context)
 
         presenter.setView(this)
-        presenter.getData()
+        context?.let { presenter.getData(it) }
     }
 
     override fun setData(list: List<Item>) {
@@ -63,6 +67,17 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
             .replace(R.id.fragment_container, detailsFragment)
             .addToBackStack("")
             .commit()
+    }
+
+    override fun showErrorMessage(context: Context,message: String) {
+        AlertDialog.Builder(context)
+            .setTitle(ErrorMessages.WARNING)
+            .setMessage(message)
+            .setCancelable(false)
+            .setNegativeButton("cancel") {dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun isItemSelected(isSelect : Boolean) {

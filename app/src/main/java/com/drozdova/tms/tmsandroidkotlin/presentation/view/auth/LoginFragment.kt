@@ -45,7 +45,7 @@ class LoginFragment : Fragment(), LoginView {
         }
     }
 
-    override suspend fun login(){
+    override fun login(){
             val fragmentOnBoarding = parentFragmentManager.beginTransaction()
             fragmentOnBoarding.replace(R.id.fragment_container, HomeFragment())
                 .addToBackStack("onBoard")

@@ -2,6 +2,9 @@ package com.drozdova.tms.tmsandroidkotlin.data.auth
 
 import com.drozdova.tms.tmsandroidkotlin.data.sharedprefs.SharedPreferencesHelper
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(
@@ -9,22 +12,27 @@ class LoginRepositoryImpl @Inject constructor(
 ) : LoginRepository {
 
     override suspend fun saveLogin(login: String, password: String) {
-        sharedPreferencesHelper.saveUserName(login)
-        sharedPreferencesHelper.saveUserPass(password)
-        sharedPreferencesHelper.setVisibilityOnBoarding(true)
+        withContext(Dispatchers.IO) {
+            sharedPreferencesHelper.saveUserName(login)
+            sharedPreferencesHelper.saveUserPass(password)
+            sharedPreferencesHelper.setVisibilityOnBoarding(true)
+        }
     }
 
-    override fun showUserCreds() : String{
-        return sharedPreferencesHelper.getUserCreds()
+    override suspend fun showUserCreds() : String{
+        return withContext(Dispatchers.IO){
+            sharedPreferencesHelper.getUserCreds()
+        }
     }
 
     override fun doesUserExist(): Boolean {
         return sharedPreferencesHelper.checkUserExists()
     }
 
-    override fun logout() {
-        sharedPreferencesHelper.logout()
-        sharedPreferencesHelper.setVisibilityOnBoarding(true)
+    override suspend fun logout() {
+        withContext(Dispatchers.IO) {
+            sharedPreferencesHelper.logout()
+            sharedPreferencesHelper.setVisibilityOnBoarding(true)
+        }
     }
-
 }

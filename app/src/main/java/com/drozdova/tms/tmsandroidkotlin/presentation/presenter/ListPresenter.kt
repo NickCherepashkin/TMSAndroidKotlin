@@ -1,6 +1,11 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
+import android.content.Context
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsListInteractor
+import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,9 +20,15 @@ class ListPresenter @Inject constructor(
         this.listView = listView
     }
 
-    fun getData() {
-        val list = listInteractor.getData()
-        listView.setData(list)
+    fun getData(context: Context) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val list = listInteractor.getData()
+                listView.setData(list)
+            } catch (e: Exception) {
+                listView.showErrorMessage(context, ErrorMessages.ERROR_MSG_NO_DATA)
+            }
+        }
     }
 
     fun goToDetails(name: String, date: String, imageView: Int) {
