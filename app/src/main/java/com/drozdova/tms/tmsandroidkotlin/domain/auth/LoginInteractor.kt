@@ -5,7 +5,7 @@ import javax.inject.Inject
 class LoginInteractor @Inject constructor(
     private val loginRepository: LoginRepository
 )  {
-    fun saveLogin(login: String, password: String) {
+    suspend fun saveLogin(login: String, password: String) {
         loginRepository.saveLogin(login, password)
     }
 

@@ -8,7 +8,7 @@ class LoginRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ) : LoginRepository {
 
-    override fun saveLogin(login: String, password: String) {
+    override suspend fun saveLogin(login: String, password: String) {
         sharedPreferencesHelper.saveUserName(login)
         sharedPreferencesHelper.saveUserPass(password)
         sharedPreferencesHelper.setVisibilityOnBoarding(true)
