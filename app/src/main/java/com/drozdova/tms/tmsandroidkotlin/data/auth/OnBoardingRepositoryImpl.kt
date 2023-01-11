@@ -8,12 +8,11 @@ class OnBoardingRepositoryImpl @Inject constructor(
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ) : OnBoardingRepository {
 
-
-    override fun isVisible(): Boolean {
+    override suspend fun isVisible(): Boolean {
         return sharedPreferencesHelper.isVisibleOnBoarding()
     }
 
-    override fun saveVisibility(visibility: Boolean) {
+    override suspend fun saveVisibility(visibility: Boolean) {
         sharedPreferencesHelper.setVisibilityOnBoarding(visibility)
     }
 }

@@ -1,8 +1,8 @@
 package com.drozdova.tms.tmsandroidkotlin.domain.auth
 
 interface LoginRepository {
-    fun saveLogin(login: String, password: String)
-    fun showUserCreds() : String
-    fun doesUserExist() : Boolean
-    fun logout()
+    suspend fun saveLogin(login: String, password: String)
+    suspend fun showUserCreds() : String
+    suspend fun doesUserExist() : Boolean
+    suspend fun logout()
 }

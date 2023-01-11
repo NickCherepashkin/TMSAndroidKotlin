@@ -4,7 +4,10 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import javax.inject.Inject
 
 class ItemsListInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
-    fun getData() : List<Item>{
-        return itemsRepository.getData()
+    suspend fun getData() : List<Item>{
+        val list = itemsRepository.getData()
+        if(list.isEmpty()) {
+            throw Exception()
+        } else return list
     }
 }

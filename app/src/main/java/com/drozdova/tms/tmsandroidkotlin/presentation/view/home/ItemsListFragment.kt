@@ -1,5 +1,6 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsListViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -67,6 +69,17 @@ class ItemsListFragment : Fragment(), ItemsListener {
 
         viewModel.msg.observe(viewLifecycleOwner) { message ->
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.msgError.observe(viewLifecycleOwner) { error->
+            AlertDialog.Builder(context)
+                .setTitle(ErrorMessages.WARNING)
+                .setMessage(error)
+                .setCancelable(false)
+                .setNegativeButton("cancel") {dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 

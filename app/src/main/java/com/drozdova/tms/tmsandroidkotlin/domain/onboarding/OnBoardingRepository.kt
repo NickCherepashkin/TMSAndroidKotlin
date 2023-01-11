@@ -3,6 +3,6 @@ package com.drozdova.tms.tmsandroidkotlin.domain.onboarding
 import android.opengl.Visibility
 
 interface OnBoardingRepository {
-    fun isVisible() : Boolean
-    fun saveVisibility(visibility: Boolean)
+    suspend fun isVisible() : Boolean
+    suspend fun saveVisibility(visibility: Boolean)
 }
