@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsFragment
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation.setFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithDeletedBackStack
 
 class OnBoardingFragment : Fragment() {
     private var _binding : FragmentOnBoardingBinding? = null
@@ -34,7 +36,7 @@ class OnBoardingFragment : Fragment() {
 
         viewModel.btnShowList.observe(viewLifecycleOwner) {
             if (it != null) {
-                setFragment(parentFragmentManager, ItemsFragment())
+                navigateWithDeletedBackStack(it.destinationId, it.fragmentTRemovw)
                 viewModel.onBoardingBack()
             }
         }

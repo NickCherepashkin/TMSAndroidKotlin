@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.AuthInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,12 +15,16 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ) : ViewModel() {
-    private val _userExist = MutableLiveData<Boolean>()
-    val userExist : LiveData<Boolean> = _userExist
+    private val _userExist = MutableLiveData<Int>()
+    val userExist : LiveData<Int> = _userExist
 
     fun userIsexist() {
         viewModelScope.launch {
-            _userExist.value = authInteractor.checkUserExists()
+            val doewUserExist = authInteractor.checkUserExists()
+            _userExist.value = when(doewUserExist) {
+                true -> R.navigation.main_graph
+                false -> R.navigation.auth_graph
+            }
         }
     }
 }

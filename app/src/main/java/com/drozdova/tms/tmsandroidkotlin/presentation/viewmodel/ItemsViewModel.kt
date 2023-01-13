@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,8 +18,8 @@ class ItemsViewModel @Inject constructor(
     private val _itemsList = MutableLiveData<List<Item>>()
     val itemsList : LiveData<List<Item>> = _itemsList
 
-    private val _bundle = MutableLiveData<Item?>()
-    val bundle : LiveData<Item?> = _bundle
+    private val _bundle = MutableLiveData<ItemList?>()
+    val bundle : LiveData<ItemList?> = _bundle
 
     private val _msg = MutableLiveData<String>()
     val msg : LiveData<String> = _msg
@@ -31,7 +32,7 @@ class ItemsViewModel @Inject constructor(
     }
 
     fun itemDetailsClick(name: String, date: String, image: Int) {
-        _bundle.value = Item(image, name, date)
+        _bundle.value = ItemList(image, name, date, R.id.action_itemsFragment_to_detailsFragment)
     }
 
     fun onItemsBack() {
@@ -42,3 +43,10 @@ class ItemsViewModel @Inject constructor(
         _msg.value = "messagesssssssss........"
     }
 }
+
+data class ItemList(
+    val image: Int,
+    val title: String,
+    val date: String,
+    val destination: Int
+)

@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation.setFragment
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +23,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater,container, false)
         return binding.root
     }
@@ -40,7 +39,10 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            setFragment(parentFragmentManager, HomeFragment())
+            if(it != null) {
+                navigate(it)
+                viewModel.userNavigated()
+            }
         }
     }
 }

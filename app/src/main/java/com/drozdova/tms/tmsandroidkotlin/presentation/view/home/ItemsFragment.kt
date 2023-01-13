@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.Navigation.setFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,14 +49,12 @@ class ItemsFragment : Fragment(), ItemListener {
 
         viewModel.bundle.observe(viewLifecycleOwner) { item ->
             if (item != null) {
-                val detailsFragment = DetailsFragment()
                 val bundle = Bundle()
                 bundle.putString(BundleConstants.NAME_KEY, item.title)
                 bundle.putString(BundleConstants.DATE_KEY, item.date)
                 bundle.putInt(BundleConstants.IMAGE_KEY, item.image)
-                detailsFragment.arguments = bundle
-                setFragment(parentFragmentManager, detailsFragment)
-                viewModel.onItemsBack()
+
+                navigateWithBundle(item.destination, bundle)
             }
         }
 
