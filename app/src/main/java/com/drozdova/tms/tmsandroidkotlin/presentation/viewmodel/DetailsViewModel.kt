@@ -25,6 +25,6 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-    
+
 
 }

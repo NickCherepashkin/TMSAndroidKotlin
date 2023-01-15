@@ -11,6 +11,7 @@ import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithDeletedBackStack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +41,7 @@ class LoginFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if(it != null) {
-                navigate(it)
+                navigateWithDeletedBackStack(it, R.id.loginFragment)
                 viewModel.userNavigated()
             }
         }
