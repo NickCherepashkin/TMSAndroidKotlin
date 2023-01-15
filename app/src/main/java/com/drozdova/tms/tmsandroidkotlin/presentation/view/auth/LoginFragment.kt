@@ -9,8 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithDeletedBackStack
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,9 +46,7 @@ class LoginFragment : Fragment(){
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
+            replaceGraph(R.navigation.main_graph)
         }
 
         viewModel.msgError.observe(viewLifecycleOwner) {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_itemsListFragment"
+            app:destination="@id/itemsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemsListFragment"
+        android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsListFragment"
+        android:label="fragment_items_list"
+        tools:layout="@layout/fragment_items_list" >
+        <action
+            android:id="@+id/action_itemsListFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.home.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_itemsListFragment"
+            app:destination="@id/itemsListFragment" />
+    </fragment>
+</navigation>
