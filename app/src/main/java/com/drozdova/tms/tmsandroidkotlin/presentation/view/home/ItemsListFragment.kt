@@ -16,6 +16,7 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsListViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,19 +51,13 @@ class ItemsListFragment : Fragment(), ItemsListener {
 
         viewModel.bundle.observe(viewLifecycleOwner) { item ->
             if (item != null) {
-                val detailsFragment = DetailsFragment()
                 val bundle = Bundle()
 
                 bundle.putString(BundleConstants.ITEM_NAME, item.title)
                 bundle.putString(BundleConstants.ITEM_DATE, item.date)
                 bundle.putInt(BundleConstants.ITEM_IMAGE, item.image)
-                detailsFragment.arguments = bundle
 
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, detailsFragment)
-                    .addToBackStack("")
-                    .commit()
-
+                navigateWithBundle(item.destination, bundle)
                 viewModel.onItemsBack()
             }
         }

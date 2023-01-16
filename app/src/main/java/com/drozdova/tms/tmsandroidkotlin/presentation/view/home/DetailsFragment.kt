@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentDetailsBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.DetailsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,9 +46,9 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LoginFragment())
-                .commit()
+            if (it != null) {
+                replaceGraph(it)
+            }
         }
     }
 }

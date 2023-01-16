@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsListFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,9 +34,10 @@ class OnBoardingFragment : Fragment(){
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ItemsListFragment())
-                .commit()
+            if(it != null) {
+                navigate(it)
+                viewModel.onBoardingBack()
+            }
         }
     }
 

@@ -4,5 +4,5 @@ import android.opengl.Visibility
 
 interface OnBoardingRepository {
     suspend fun isVisible() : Boolean
-    suspend fun saveVisibility(visibility: Boolean)
+    fun saveVisibility(visibility: Boolean)
 }

@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentHomeBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.OnBoardingFragment
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.HomeViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -40,14 +38,11 @@ class HomeFragment : Fragment() {
             viewModel.goToOnBoarding()
         }
 
-        viewModel.visibility.observe(viewLifecycleOwner){
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,
-                when(it) {
-                    true -> OnBoardingFragment()
-                    false -> ItemsListFragment()
-                })
-                .commit()
+        viewModel.nav.observe(viewLifecycleOwner){
+            if (it != null) {
+                navigate(it)
+                viewModel.onHomeBack()
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import com.drozdova.tms.tmsandroidkotlin.domain.onboarding.OnBoardingInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
@@ -20,11 +21,8 @@ class HomeViewModel @Inject constructor(
     private val _name = MutableLiveData<String>()
     val name: LiveData<String> = _name
 
-//    private val _nav = MutableLiveData<Unit?>()
-//    val nav: LiveData<Unit?> = _nav
-
-    private val _visibility = MutableLiveData<Boolean>()
-    val visibility: LiveData<Boolean> = _visibility
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
 
     fun showUserCreds() {
         viewModelScope.launch {
@@ -42,12 +40,18 @@ class HomeViewModel @Inject constructor(
     fun goToOnBoarding() {
         viewModelScope.launch {
             try {
-                _visibility.value = onBoardingInteractor.isVisible()
+                val doesShowed = onBoardingInteractor.isVisible()
+                _nav.value = when(doesShowed) {
+                    true -> R.id.action_homeFragment_to_onBoardingFragment
+                    false -> R.id.action_homeFragment_to_itemsListFragment
+                }
             } catch (e: Exception) {
                 Log.w(ErrorMessages.WARNING, "${ErrorMessages.ERROR_MSG_IS_VISIBLE} $e")
             }
-
         }
+    }
 
+    fun onHomeBack() {
+        _nav.value = null
     }
 }

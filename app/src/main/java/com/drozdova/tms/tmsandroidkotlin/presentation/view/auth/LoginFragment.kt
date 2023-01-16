@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
-import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithDeletedBackStack
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +45,9 @@ class LoginFragment : Fragment(){
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            replaceGraph(R.navigation.main_graph)
+            if(it != null) {
+                replaceGraph(it)
+            }
         }
 
         viewModel.msgError.observe(viewLifecycleOwner) {
