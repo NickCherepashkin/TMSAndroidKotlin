@@ -48,6 +48,11 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
+            if (it != null) {
+                val graph = findNavController().navInflater.inflate(it)
+                graph.startDestination = R.id.loginFragment
+                findNavController().graph = graph
+            }
             replaceGraph(it!!)
         }
     }

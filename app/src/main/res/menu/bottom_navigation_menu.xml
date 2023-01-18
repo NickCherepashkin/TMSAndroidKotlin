@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/onBoardingFragment"
+        android:title="@string/onboarding_fragment_txt"
+        android:icon="@drawable/mountain_icon"/>
+
+    <item
+        android:id="@+id/itemsFragment"
+        android:title="@string/items_fragment_txt"
+        android:icon="@drawable/green_checkmark_icon"/>
+</menu>

@@ -8,5 +8,8 @@
     <string name="enter_your_login_txt">Enter your login</string>
     <string name="btn_log_in_txt">log in</string>
     <string name="logout_txt">logout</string>
+    <string name="home_fragment_txt">Home Fragment</string>
+    <string name="items_fragment_txt">Items Fragment</string>
+    <string name="onboarding_fragment_txt">OnBoarding Fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

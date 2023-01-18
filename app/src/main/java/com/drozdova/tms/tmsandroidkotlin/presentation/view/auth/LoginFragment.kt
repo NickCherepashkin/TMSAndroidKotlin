@@ -1,10 +1,12 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.auth
 
+import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.drozdova.tms.tmsandroidkotlin.R
@@ -12,6 +14,7 @@ import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -25,6 +28,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater,container, false)
+//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         return binding.root
     }
 

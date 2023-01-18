@@ -24,7 +24,4 @@ class DetailsViewModel @Inject constructor(
             _nav.value = R.navigation.auth_graph
         }
     }
-
-    
-
 }
