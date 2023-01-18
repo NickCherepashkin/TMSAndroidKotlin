@@ -1,6 +1,7 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.util.Log
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +31,6 @@ class HomePresenter @Inject constructor(
     }
 
     fun goToOnBoarding() {
-        homeView.goToOnBoarding()
+        homeView.goToOnBoarding(R.navigation.main_graph)
     }
 }

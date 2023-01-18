@@ -1,6 +1,7 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.content.Context
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsListInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import kotlinx.coroutines.CoroutineScope
@@ -32,6 +33,6 @@ class ListPresenter @Inject constructor(
     }
 
     fun goToDetails(name: String, date: String, imageView: Int) {
-        listView.goToDetails(name, date, imageView)
+        listView.goToDetails(name, date, imageView, R.id.action_itemsListFragment_to_detailsFragment)
     }
 }

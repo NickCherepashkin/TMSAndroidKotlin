@@ -11,6 +11,7 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.DetailsPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.DetailsView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -50,9 +51,7 @@ class DetailsFragment : Fragment(), DetailsView {
         }
     }
 
-    override fun logout() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, LoginFragment())
-            .commit()
+    override fun logout(destination: Int) {
+        replaceGraph(destination)
     }
 }

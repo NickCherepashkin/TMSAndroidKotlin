@@ -10,6 +10,7 @@ import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.OnBoardingPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.OnBoardingView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.ItemsListFragment
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,11 +39,12 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         }
     }
 
-    override fun showList() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, ItemsListFragment())
-            .addToBackStack("")
-            .commit()
+    override fun showList(destination: Int) {
+        navigate(destination)
+//        parentFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, ItemsListFragment())
+//            .addToBackStack("")
+//            .commit()
     }
 
     override fun onDestroy() {

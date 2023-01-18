@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDestination
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentHomeBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.HomePresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.HomeView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.OnBoardingFragment
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,10 +45,7 @@ class HomeFragment : Fragment(), HomeView {
         binding.tvUserCreds.text = login
     }
 
-    override fun goToOnBoarding() {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, OnBoardingFragment())
-            .addToBackStack("")
-            .commit()
+    override fun goToOnBoarding(destination: Int) {
+        replaceGraph(destination)
     }
 }

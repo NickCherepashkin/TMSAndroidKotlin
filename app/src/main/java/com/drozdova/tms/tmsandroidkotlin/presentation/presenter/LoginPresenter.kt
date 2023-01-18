@@ -1,6 +1,7 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.util.Log
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +25,7 @@ class LoginPresenter @Inject constructor(
             try {
                 launch {
                     loginInteractor.saveLogin(login, password)
-                    loginView.login()
+                    loginView.login(R.id.action_loginFragment_to_homeFragment)
                 }
             } catch (e: Exception) {
                 Log.w(ErrorMessages.WARNING, "${ErrorMessages.ERROR_MSG_SAVE_LOGIN} $e")

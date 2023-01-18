@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDestination
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.LoginPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.LoginView
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.HomeFragment
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -45,10 +47,7 @@ class LoginFragment : Fragment(), LoginView {
         }
     }
 
-    override fun login(){
-            val fragmentOnBoarding = parentFragmentManager.beginTransaction()
-            fragmentOnBoarding.replace(R.id.fragment_container, HomeFragment())
-                .addToBackStack("onBoard")
-                .commit()
+    override fun login(destination: Int){
+        navigate(destination)
     }
 }

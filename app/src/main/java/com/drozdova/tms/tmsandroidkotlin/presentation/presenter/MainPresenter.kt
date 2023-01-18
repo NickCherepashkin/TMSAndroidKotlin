@@ -1,5 +1,6 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
+import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import javax.inject.Inject
 
@@ -13,6 +14,10 @@ class MainPresenter@Inject constructor(
     }
     fun checkUserExists() {
         val isExist = loginInteractor.checkUserExists()
-        mainView.checkUserExists(isExist)
+        val destination = when(isExist) {
+            true -> R.navigation.main_graph
+            false -> R.navigation.auth_graph
+        }
+        mainView.checkUserExists(destination)
     }
 }

@@ -18,6 +18,7 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListView
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
+import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -54,19 +55,14 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         adapter.submit(list)
     }
 
-    override fun goToDetails(name: String, date: String, imageView: Int) {
-        val detailsFragment = DetailsFragment()
+    override fun goToDetails(name: String, date: String, imageView: Int, destination: Int) {
         val bundle = Bundle()
 
         bundle.putString(BundleConstants.ITEM_NAME, name)
         bundle.putString(BundleConstants.ITEM_DATE, date)
         bundle.putInt(BundleConstants.ITEM_IMAGE, imageView)
-        detailsFragment.arguments = bundle
 
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, detailsFragment)
-            .addToBackStack("")
-            .commit()
+        navigateWithBundle(destination, bundle)
     }
 
     override fun showErrorMessage(context: Context,message: String) {
