@@ -24,15 +24,23 @@ class ItemsViewModel @Inject constructor(
     private val _msg = MutableLiveData<String>()
     val msg : LiveData<String> = _msg
 
+    private val _error = MutableLiveData<String?>()
+    val error : LiveData<String?> = _error
 
     fun getItemslist() {
         viewModelScope.launch {
-            _itemsList.value = interactor.getItemslist()
+            try {
+                _itemsList.value = interactor.getItemslist()
+
+            } catch (e: java.lang.Exception) {
+                _error.value = e.message.toString()
+            }
+
         }
     }
 
-    fun itemDetailsClick(name: String, date: String, image: Int) {
-        _bundle.value = ItemList(image, name, date, R.id.action_itemsFragment_to_detailsFragment)
+    fun itemDetailsClick(description: String, image: String) {
+        _bundle.value = ItemList(description, image, R.id.action_itemsFragment_to_detailsFragment)
     }
 
     fun onItemsBack() {
@@ -45,8 +53,7 @@ class ItemsViewModel @Inject constructor(
 }
 
 data class ItemList(
-    val image: Int,
-    val title: String,
-    val date: String,
+    val description: String,
+    val image: String,
     val destination: Int
 )

@@ -50,9 +50,8 @@ class ItemsFragment : Fragment(), ItemListener {
         viewModel.bundle.observe(viewLifecycleOwner) { item ->
             if (item != null) {
                 val bundle = Bundle()
-                bundle.putString(BundleConstants.NAME_KEY, item.title)
-                bundle.putString(BundleConstants.DATE_KEY, item.date)
-                bundle.putInt(BundleConstants.IMAGE_KEY, item.image)
+                bundle.putString(BundleConstants.NAME_KEY, item.description)
+                bundle.putString(BundleConstants.DATE_KEY, item.image)
 
                 navigateWithBundle(item.destination, bundle)
             }
@@ -61,10 +60,14 @@ class ItemsFragment : Fragment(), ItemListener {
         viewModel.msg.observe(viewLifecycleOwner) {message ->
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
+
+        viewModel.error.observe(viewLifecycleOwner) {error ->
+            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        }
     }
 
-    override fun itemDetailsClick(name: String, date: String, image: Int) {
-        viewModel.itemDetailsClick(name, date, image)
+    override fun itemDetailsClick(description: String, image: String) {
+        viewModel.itemDetailsClick(description, image)
     }
 
     override fun imageClick() {

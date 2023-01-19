@@ -1,9 +1,11 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter
 
+import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.model.Item
+import com.squareup.picasso.Picasso
 
 class ItemViewHolder(
     private val view : ItemBinding,
@@ -11,16 +13,15 @@ class ItemViewHolder(
 ) : ViewHolder(view.root) {
 
     fun bind(item : Item) {
-        view.itemImage.setBackgroundResource(item.image)
-        view.itemTitle.text = item.title
-        view.itemDate.text = item.date
+        view.itemTitle.text = item.description
+        Picasso.get().load(Uri.parse(item.image)).into(view.itemImage)
 
         view.itemImage.setOnClickListener {
             itemListener.imageClick()
         }
 
         itemView.setOnClickListener {
-            itemListener.itemDetailsClick(item.title, item.date, item.image)
+            itemListener.itemDetailsClick(item.description, item.image)
         }
     }
 }
