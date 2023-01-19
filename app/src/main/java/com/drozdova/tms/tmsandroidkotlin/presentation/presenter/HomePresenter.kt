@@ -2,6 +2,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.domain.auth.HomeInteractor
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import kotlinx.coroutines.CoroutineScope
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
-    private val loginInteractor: LoginInteractor
+    private val homeInteractor: HomeInteractor
 ){
     private lateinit var homeView: HomeView
 
@@ -21,16 +22,20 @@ class HomePresenter @Inject constructor(
     fun showUserCreds() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val name = loginInteractor.getUserCreds()
+                val name = homeInteractor.getUserCreds()
                 homeView.showUserCreds(name)
             } catch (e: Exception) {
                 Log.w(ErrorMessages.WARNING, "${ErrorMessages.ERROR_MSG_GET_USER_CREDS} $e")
             }
         }
-
     }
 
     fun goToOnBoarding() {
-        homeView.goToOnBoarding(R.navigation.main_graph)
+        val doesShow = homeInteractor.showOnBoarding()
+        val destination = when(doesShow) {
+            true -> R.id.itemsListFragment
+            false -> R.navigation.main_graph
+        }
+        homeView.goToOnBoarding(destination)
     }
 }

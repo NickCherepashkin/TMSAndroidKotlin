@@ -9,10 +9,6 @@ class LoginInteractor @Inject constructor(
         loginRepository.saveLogin(login, password)
     }
 
-    suspend fun getUserCreds() : String{
-        return loginRepository.showUserCreds()
-    }
-
     fun checkUserExists() : Boolean {
         return loginRepository.doesUserExist()
     }

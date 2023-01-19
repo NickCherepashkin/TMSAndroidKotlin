@@ -3,6 +3,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.MainPresenter
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationChangedListener {
 
     @Inject lateinit var presenter : MainPresenter
     private lateinit var navController: NavController
@@ -28,11 +29,20 @@ class MainActivity : AppCompatActivity(), MainView {
         navController = navHostFragment.navController
 
         presenter.setMainView(this)
-        presenter.checkUserExists()
-
+        presenter.setStartScreen()
     }
 
-    override fun checkUserExists(destination: Int) {
+    override fun setStartScreen(destination: Int) {
+        val navGraf = navHostFragment.navController.navInflater.inflate(R.navigation.auth_graph)
+        navGraf.setStartDestination(destination)
         navController.setGraph(destination)
+    }
+
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+
     }
 }

@@ -35,7 +35,7 @@ class SharedPreferencesHelper @Inject constructor(
     }
 
     fun isVisibleOnBoarding() : Boolean{
-        return sharedPreferences.getBoolean(ONBOARDING_IS_VISIBLE, false)
+        return sharedPreferences.getBoolean(ONBOARDING_IS_VISIBLE, true)
     }
 
     companion object {

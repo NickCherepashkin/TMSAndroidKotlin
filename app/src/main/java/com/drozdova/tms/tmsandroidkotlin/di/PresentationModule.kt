@@ -1,6 +1,8 @@
 package com.drozdova.tms.tmsandroidkotlin.di
 
+import com.drozdova.tms.tmsandroidkotlin.domain.auth.HomeInteractor
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
+import com.drozdova.tms.tmsandroidkotlin.domain.auth.OnBoardingInteractor
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsListInteractor
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.*
 import dagger.Module
@@ -23,8 +25,8 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideHomePresenter(loginInteractor: LoginInteractor) : HomePresenter {
-        return HomePresenter(loginInteractor)
+    fun provideHomePresenter(homeInteractor: HomeInteractor) : HomePresenter {
+        return HomePresenter(homeInteractor)
     }
 
     @Provides
@@ -38,7 +40,7 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideOnBoardingPresenter() : OnBoardingPresenter {
-        return OnBoardingPresenter()
+    fun provideOnBoardingPresenter(onBoardingInteractor: OnBoardingInteractor) : OnBoardingPresenter {
+        return OnBoardingPresenter(onBoardingInteractor)
     }
 }

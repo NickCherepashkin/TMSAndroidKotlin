@@ -41,16 +41,11 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
     override fun showList(destination: Int) {
         navigate(destination)
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, ItemsListFragment())
-//            .addToBackStack("")
-//            .commit()
     }
 
     override fun onDestroy() {
+        presenter.saveVisibility(false)
         super.onDestroy()
-
-        
     }
 
 

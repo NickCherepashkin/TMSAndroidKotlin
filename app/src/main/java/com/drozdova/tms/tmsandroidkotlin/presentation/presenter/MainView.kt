@@ -1,5 +1,5 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 interface MainView {
-    fun checkUserExists(destination: Int)
+    fun setStartScreen(destination: Int)
 }

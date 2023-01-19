@@ -19,12 +19,6 @@ class LoginRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun showUserCreds() : String{
-        return withContext(Dispatchers.IO){
-            sharedPreferencesHelper.getUserCreds()
-        }
-    }
-
     override fun doesUserExist(): Boolean {
         return sharedPreferencesHelper.checkUserExists()
     }
