@@ -1,18 +1,28 @@
 package com.drozdova.tms.tmsandroidkotlin.data.items
 
+import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.data.ApiService
+import com.drozdova.tms.tmsandroidkotlin.data.ApiServiceSecond
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
+import javax.inject.Named
 
 class ItemsRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    @Named("FIRST") private val apiService: ApiService,
+    @Named("SECOND") private val apiServiceSecond: ApiServiceSecond,
 ) : ItemsRepository {
     override suspend fun getItemsList() : List<Item> {
+        val responseSecond = apiServiceSecond.getPhotoById(13)
+        Log.w("SECOND RESPONSE", responseSecond.body()?.title.toString())
+
+        val responseSecondQuery = apiServiceSecond.getPhotoByTitle("iusto sunt nobis quasi veritatis quas expedita voluptatum deserunt")
+        Log.w("THIRD RESPONSE", responseSecondQuery.body()!!.get(0).toString())
+
         val response = apiService.getData()
         return withContext(Dispatchers.IO) {
             response.body()?.sampleList?.let {
