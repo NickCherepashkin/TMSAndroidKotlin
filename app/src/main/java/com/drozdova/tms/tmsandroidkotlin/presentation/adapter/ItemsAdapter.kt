@@ -3,14 +3,15 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
 
 class ItemsAdapter(private val itemsListener: ItemsListener) : RecyclerView.Adapter<ItemViewHolder>() {
-    private var itemsList = mutableListOf<Item>()
+    private var itemsList = mutableListOf<UserInfo>()
 
-    fun submit(itemsList: List<Item>) {
+    fun submit(itemsList: List<UserInfo>) {
         this.itemsList.clear()
         this.itemsList = itemsList.toMutableList()
         this.notifyDataSetChanged()

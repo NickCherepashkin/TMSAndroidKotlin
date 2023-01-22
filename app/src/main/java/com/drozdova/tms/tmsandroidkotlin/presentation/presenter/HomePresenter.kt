@@ -33,8 +33,8 @@ class HomePresenter @Inject constructor(
     fun goToOnBoarding() {
         val doesShow = homeInteractor.showOnBoarding()
         val destination = when(doesShow) {
-            true -> R.id.itemsListFragment
-            false -> R.navigation.main_graph
+            true -> R.navigation.main_graph
+            false -> R.id.itemsListFragment
         }
         homeView.goToOnBoarding(destination)
     }

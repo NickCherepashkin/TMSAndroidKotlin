@@ -15,13 +15,9 @@ class MainPresenter@Inject constructor(
     fun setStartScreen() {
         val isExist = loginInteractor.checkUserExists()
         val startDest = when(isExist) {
-            true -> R.id.loginFragment
-            false -> R.id.homeFragment
+            true -> R.navigation.main_graph
+            false -> R.navigation.auth_graph
         }
         mainView.setStartScreen(startDest)
-    }
-
-    fun showGraph() {
-
     }
 }

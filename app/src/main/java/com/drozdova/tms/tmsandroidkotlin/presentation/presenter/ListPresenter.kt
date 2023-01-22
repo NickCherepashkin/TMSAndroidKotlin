@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ListPresenter @Inject constructor(
+class   ListPresenter @Inject constructor(
     private val listInteractor: ItemsListInteractor
 ) {
 

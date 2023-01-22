@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationChangedListener {
+class MainActivity : AppCompatActivity(), MainView{
 
     @Inject lateinit var presenter : MainPresenter
     private lateinit var navController: NavController
@@ -33,16 +33,6 @@ class MainActivity : AppCompatActivity(), MainView, NavController.OnDestinationC
     }
 
     override fun setStartScreen(destination: Int) {
-        val navGraf = navHostFragment.navController.navInflater.inflate(R.navigation.auth_graph)
-        navGraf.setStartDestination(destination)
         navController.setGraph(destination)
-    }
-
-    override fun onDestinationChanged(
-        controller: NavController,
-        destination: NavDestination,
-        arguments: Bundle?
-    ) {
-
     }
 }

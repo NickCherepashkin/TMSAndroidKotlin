@@ -2,6 +2,7 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
@@ -14,10 +15,10 @@ class ItemViewHolder(
     private val view: ItemBinding,
     private val itemsListener: ItemsListener
 ) : ViewHolder(view.root) {
-    fun bind(item : Item) {
+    fun bind(item : UserInfo) {
         var isSelected = false
-        view.itemImage.setBackgroundResource(item.image)
-        view.itemTitle.text = item.title
+        view.itemImage.setBackgroundResource(0)
+        view.itemTitle.text = item.name
         view.itemDate.text = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(Date())
         view.itemImageStar.setBackgroundResource(R.drawable.black_star)
 
@@ -35,9 +36,9 @@ class ItemViewHolder(
 
         itemView.setOnClickListener {
             itemsListener.showItemDetails(
-                item.title,
-                item.date,
-                item.image
+                item.name,
+                item.username,
+                0
             )
         }
     }

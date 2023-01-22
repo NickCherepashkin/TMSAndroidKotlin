@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsListBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
@@ -51,7 +52,7 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         context?.let { presenter.getData(it) }
     }
 
-    override fun setData(list: List<Item>) {
+    override fun setData(list: List<UserInfo>) {
         adapter.submit(list)
     }
 
