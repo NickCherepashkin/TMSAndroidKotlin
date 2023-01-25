@@ -30,7 +30,9 @@ class ItemsViewModel @Inject constructor(
     fun getItemslist() {
         viewModelScope.launch {
             try {
-                _itemsList.value = interactor.getItemslist()
+                interactor.getData()
+                val list = interactor.showData()
+                _itemsList.value = list
 
             } catch (e: java.lang.Exception) {
                 _error.value = e.message.toString()
@@ -49,6 +51,13 @@ class ItemsViewModel @Inject constructor(
 
     fun imageClick() {
         _msg.value = "messagesssssssss........"
+    }
+
+    fun deleteItem(description: String) {
+        viewModelScope.launch {
+            interactor.deleteItemByDescription(description)
+        }
+
     }
 }
 

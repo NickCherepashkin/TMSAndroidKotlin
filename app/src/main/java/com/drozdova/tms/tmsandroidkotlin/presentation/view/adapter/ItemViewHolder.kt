@@ -23,5 +23,9 @@ class ItemViewHolder(
         itemView.setOnClickListener {
             itemListener.itemDetailsClick(item.description, item.image)
         }
+
+        view.delete.setOnClickListener {
+            itemListener.onDeleteClick(item.description)
+        }
     }
 }

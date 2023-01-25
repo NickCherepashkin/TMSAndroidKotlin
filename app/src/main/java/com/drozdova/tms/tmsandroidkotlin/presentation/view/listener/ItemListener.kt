@@ -1,7 +1,9 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.listener
 
-interface ItemListener {
+interface  ItemListener {
     fun itemDetailsClick(description: String, image: String)
 
     fun imageClick()
+
+    fun onDeleteClick(description: String)
 }

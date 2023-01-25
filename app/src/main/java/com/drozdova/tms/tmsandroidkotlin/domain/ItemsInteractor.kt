@@ -5,7 +5,19 @@ import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
-    suspend fun getItemslist() : List<Item>{
-        return itemsRepository.getItemsList()
+    suspend fun getData(){
+        itemsRepository.getData()
+    }
+
+    suspend fun showData(): List<Item> {
+        return itemsRepository.showData()
+    }
+
+    suspend fun deleteItemByDescription(description: String) {
+        itemsRepository.deleteItemByDescription(description)
+    }
+
+    suspend fun findItem(searchText: String): Item{
+        return itemsRepository.findItemByDescription(searchText)
     }
 }

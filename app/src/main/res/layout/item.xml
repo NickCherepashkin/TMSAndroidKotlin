@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,7 +8,7 @@
     android:layout_marginHorizontal="5dp"
     android:layout_marginTop="10dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -17,29 +18,34 @@
             android:id="@+id/item_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp"
-            android:gravity="center">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/item_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_delete_forever_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toEndOf="@+id/item_title"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/item_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"/>
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

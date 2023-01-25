@@ -4,6 +4,8 @@ import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.data.ApiService
 import com.drozdova.tms.tmsandroidkotlin.data.ApiServiceSecond
+import com.drozdova.tms.tmsandroidkotlin.data.database.ItemsEntity
+import com.drozdova.tms.tmsandroidkotlin.data.database.dao.ItemsDAO
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,72 +17,44 @@ import javax.inject.Named
 class ItemsRepositoryImpl @Inject constructor(
     @Named("FIRST") private val apiService: ApiService,
     @Named("SECOND") private val apiServiceSecond: ApiServiceSecond,
+    private val itemsDAO: ItemsDAO
 ) : ItemsRepository {
-    override suspend fun getItemsList() : List<Item> {
-        val responseSecond = apiServiceSecond.getPhotoById(13)
-        Log.w("SECOND RESPONSE", responseSecond.body()?.title.toString())
-
-        val responseSecondQuery = apiServiceSecond.getPhotoByTitle("iusto sunt nobis quasi veritatis quas expedita voluptatum deserunt")
-        Log.w("THIRD RESPONSE", responseSecondQuery.body()!!.get(0).toString())
-
-        val response = apiService.getData()
+    override suspend fun getData() {
         return withContext(Dispatchers.IO) {
-            response.body()?.sampleList?.let {
-                it.map {
-                    Item(it.description, it.imageUrl)
-                }
+            if (!itemsDAO.doesItemsEntityExists()) {
+                Log.w("getData", "data not exists")
+                val response = apiService.getData()
+                response.body()?.sampleList?.let {
+                    it.map {
+                        val itemssEntity = ItemsEntity((1..999).random(), it.description, it.imageUrl)
+                        itemsDAO.insertItemsEntity(itemssEntity)
+                    }
                 } ?: kotlin.run {
-                emptyList()
+                    emptyList()
+                }
             }
         }
-//        return withContext(Dispatchers.IO){
-//            listOf(
-//                Item(
-//                    R.drawable.android,
-//                    "Android",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.apple,
-//                    "IOS",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.dot_net,
-//                    ".Net",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.delphi,
-//                    "Delphi",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.java,
-//                    "Java",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.python,
-//                    "Python",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.js,
-//                    "Java Script",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.android,
-//                    "Android",
-//                    "26.02.2022"
-//                ),
-//                Item(
-//                    R.drawable.apple,
-//                    "IOS",
-//                    "26.02.2022"
-//                )
-//            )
-//        }
+    }
+
+    override suspend fun showData(): List<Item> {
+        return withContext(Dispatchers.IO){
+            val itemsEntity = itemsDAO.getItemsEntity()
+            itemsEntity.map {
+                Item(it.description, it.imageUrl)
+            }
+        }
+    }
+
+    override suspend fun deleteItemByDescription(description: String) {
+        withContext(Dispatchers.IO) {
+            itemsDAO.deleteItemByDescription(description)
+        }
+    }
+
+    override suspend fun findItemByDescription(searchText: String): Item {
+        return withContext(Dispatchers.IO){
+            Item("","")
+//            val itemEntity = itemsDAO.findItemEntityByDescription(searchText)
+        }
     }
 }

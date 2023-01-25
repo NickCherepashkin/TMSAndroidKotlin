@@ -9,4 +9,9 @@
         android:id="@+id/itemsFragment"
         android:title="@string/items_fragment_txt"
         android:icon="@drawable/green_checkmark_icon"/>
+
+    <item
+        android:id="@+id/searchFragment"
+        android:title="Search"
+        android:icon="@drawable/green_checkmark_icon" />
 </menu>

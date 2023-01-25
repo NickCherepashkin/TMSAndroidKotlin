@@ -69,5 +69,7 @@ abstract class DataModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
+
+
     }
 }
