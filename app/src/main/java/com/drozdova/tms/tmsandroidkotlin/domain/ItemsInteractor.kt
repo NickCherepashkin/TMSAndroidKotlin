@@ -2,6 +2,7 @@ package com.drozdova.tms.tmsandroidkotlin.domain
 
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
+import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
@@ -19,5 +20,13 @@ class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepo
 
     suspend fun findItem(searchText: String): Item{
         return itemsRepository.findItemByDescription(searchText)
+    }
+
+    suspend fun onFavClicked(description: String) {
+        itemsRepository.favClicked(description)
+    }
+
+    suspend fun getFav() : List<FavouriteModel>{
+        return itemsRepository.getFavourite()
     }
 }

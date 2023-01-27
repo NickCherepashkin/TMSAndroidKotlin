@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.presentation.view.home
+package com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items
 
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
-import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,6 +63,7 @@ class ItemsFragment : Fragment(), ItemListener {
             Log.w("ERROR_LOAD", error.toString())
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
+
     }
 
     override fun itemDetailsClick(description: String, image: String) {
@@ -78,5 +76,9 @@ class ItemsFragment : Fragment(), ItemListener {
 
     override fun onDeleteClick(description: String) {
         viewModel.deleteItem(description)
+    }
+
+    override fun onFavClicked(description: String) {
+        viewModel.onFavClicked(description)
     }
 }

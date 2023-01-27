@@ -1,32 +1,30 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
-import com.drozdova.tms.tmsandroidkotlin.model.Item
+import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
+class FavouriteItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
-) :ViewModel() {
-    private val _item = MutableLiveData<Item>()
-    val item: LiveData<Item> = _item
+): ViewModel() {
+    private val _fav = MutableLiveData<List<FavouriteModel>>()
+    val fav: LiveData<List<FavouriteModel>> = _fav
 
-    fun findItem(searchText: String) {
+    fun getFav() {
         viewModelScope.launch {
             try {
-                val foundItem = itemsInteractor.findItem(searchText)
-                _item.value = foundItem
-            } catch (e: Exception) {
-                Log.w("exception", e.toString())
-            }
+                val favList = itemsInteractor.getFav()
+                _fav.value = favList
+            } catch (e: java.lang.Exception) {
 
+            }
         }
     }
 }

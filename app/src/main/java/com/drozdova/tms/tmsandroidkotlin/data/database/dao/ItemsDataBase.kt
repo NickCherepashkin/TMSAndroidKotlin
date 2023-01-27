@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.drozdova.tms.tmsandroidkotlin.data.database.FavEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.ItemsEntity
 
-@Database(entities = [ItemsEntity::class], version = 1, exportSchema = false)
+@Database(entities = [ItemsEntity::class, FavEntity::class], version = 1, exportSchema = false)
 abstract class ItemsDataBase: RoomDatabase() {
 
     abstract fun getItemsDAO(): ItemsDAO

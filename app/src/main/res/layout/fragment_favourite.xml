@@ -7,11 +7,10 @@
     tools:context=".presentation.view.home.items.ItemsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_items_list"
+        android:id="@+id/rv_fav_items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        tools:listitem="@layout/favourite_item"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

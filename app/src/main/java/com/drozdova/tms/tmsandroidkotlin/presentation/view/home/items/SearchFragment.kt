@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.presentation.view.home
+package com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items
 
 import android.net.Uri
 import android.os.Bundle

@@ -59,6 +59,12 @@ class ItemsViewModel @Inject constructor(
         }
 
     }
+
+    fun onFavClicked(description: String) {
+        viewModelScope.launch {
+            interactor.onFavClicked(description)
+        }
+    }
 }
 
 data class ItemList(

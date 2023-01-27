@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/onBoardingFragment"
-        android:title="@string/onboarding_fragment_txt"
+        android:id="@+id/favouriteFragment"
+        android:title="favorite items"
         android:icon="@drawable/mountain_icon"/>
 
     <item

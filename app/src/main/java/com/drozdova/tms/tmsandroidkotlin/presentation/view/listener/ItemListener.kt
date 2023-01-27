@@ -6,4 +6,6 @@ interface  ItemListener {
     fun imageClick()
 
     fun onDeleteClick(description: String)
+
+    fun onFavClicked(description: String)
 }
