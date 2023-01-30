@@ -37,9 +37,9 @@ class   ListPresenter @Inject constructor(
         listView.goToDetails(name, date, imageView, R.id.action_itemsListFragment_to_detailsFragment)
     }
 
-    fun onFavClicked(id: Int) {
+    fun onFavClicked(id: Int) : Boolean {
         CoroutineScope(Dispatchers.IO).launch{
-            listInteractor.onFavClicked(id)
+             listInteractor.onFavClicked(id)
         }
     }
 }

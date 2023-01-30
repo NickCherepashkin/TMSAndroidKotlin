@@ -23,6 +23,11 @@ class ItemViewHolder(
 
         view.itemImageFav.setOnClickListener {
             itemsListener.onFavClicked(user.id)
+//            val favAdd = itemsListener.onFavClicked(user.id)
+//            view.itemImageFav.background = when() {
+//                true -> R.drawable.ic_favorite_24
+//                false -> R.drawable.ic_not_favorite_24
+//            }
         }
 
         itemView.setOnClickListener {

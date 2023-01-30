@@ -2,7 +2,6 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsListInteractor
-import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

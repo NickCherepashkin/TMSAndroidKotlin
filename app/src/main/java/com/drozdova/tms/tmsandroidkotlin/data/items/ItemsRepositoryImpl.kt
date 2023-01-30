@@ -29,13 +29,21 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun favClicked(id: Int) {
+    override suspend fun favClicked(id: Int): Boolean {
         return withContext(Dispatchers.IO){
-            val usersEntity = usersDAO.findUserById(id)
-            usersDAO.insertFavEntity(
-                FavouriteEntity(usersEntity.id, usersEntity.name, usersEntity.username,
-                usersEntity.email, usersEntity.phone)
-            )
+            val findFavUser = usersDAO.findFavUserById(id)
+
+            if (findFavUser == null) {
+                return@withContext false
+            } else {
+                val usersEntity = usersDAO.findUserById(id)
+                usersDAO.insertFavEntity(
+                    FavouriteEntity(usersEntity.id, usersEntity.name, usersEntity.username,
+                        usersEntity.email, usersEntity.phone)
+                )
+                return@withContext true
+            }
+
         }
     }
     override suspend fun showData(): List<User> {

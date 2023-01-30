@@ -11,8 +11,8 @@ class ItemsListInteractor @Inject constructor(private val itemsRepository: Items
         itemsRepository.getData()
     }
 
-    suspend fun onFavClicked(id: Int){
-        itemsRepository.favClicked(id)
+    suspend fun onFavClicked(id: Int) : Boolean{
+        return itemsRepository.favClicked(id)
     }
 
     suspend fun showData(): List<User> {
