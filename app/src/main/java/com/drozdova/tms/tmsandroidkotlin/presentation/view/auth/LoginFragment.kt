@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavDestination
 import com.drozdova.tms.tmsandroidkotlin.R
+import com.drozdova.tms.tmsandroidkotlin.databinding.ActivityMainBinding
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.LoginPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.LoginView

@@ -1,5 +1,7 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
+import android.view.View
+import androidx.navigation.NavDestination
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.auth.LoginInteractor
 import javax.inject.Inject
@@ -12,6 +14,7 @@ class MainPresenter@Inject constructor(
     fun setMainView (mainView: MainView) {
         this.mainView = mainView
     }
+
     fun setStartScreen() {
         val isExist = loginInteractor.checkUserExists()
         val startDest = when(isExist) {
@@ -20,4 +23,5 @@ class MainPresenter@Inject constructor(
         }
         mainView.setStartScreen(startDest)
     }
+
 }

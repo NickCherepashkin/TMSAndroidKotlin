@@ -17,4 +17,6 @@
     <string name="go_to_onboarding_txt">go to onBoarding</string>
     <string name="is_log_in_txt">is log in</string>
     <string name="log_out_txt">log out</string>
+    <string name="items_list">Items List</string>
+    <string name="favourite">Favourite</string>
 </resources>

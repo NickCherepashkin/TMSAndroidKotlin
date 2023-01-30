@@ -24,7 +24,8 @@ class   ListPresenter @Inject constructor(
     fun getData(context: Context) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val list = listInteractor.getData()
+                listInteractor.getData()
+                val list = listInteractor.showData()
                 listView.setData(list)
             } catch (e: Exception) {
                 listView.showErrorMessage(context, ErrorMessages.ERROR_MSG_NO_DATA)
@@ -34,5 +35,11 @@ class   ListPresenter @Inject constructor(
 
     fun goToDetails(name: String, date: String, imageView: Int) {
         listView.goToDetails(name, date, imageView, R.id.action_itemsListFragment_to_detailsFragment)
+    }
+
+    fun onFavClicked(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch{
+            listInteractor.onFavClicked(id)
+        }
     }
 }

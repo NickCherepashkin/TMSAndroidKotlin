@@ -7,11 +7,12 @@ import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
+import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
 
 class ItemsAdapter(private val itemsListener: ItemsListener) : RecyclerView.Adapter<ItemViewHolder>() {
-    private var itemsList = mutableListOf<UserInfo>()
+    private var itemsList = mutableListOf<User>()
 
-    fun submit(itemsList: List<UserInfo>) {
+    fun submit(itemsList: List<User>) {
         this.itemsList.clear()
         this.itemsList = itemsList.toMutableList()
         this.notifyDataSetChanged()

@@ -20,6 +20,11 @@ class PresentationModule {
     }
 
     @Provides
+    fun provideFavouritePresenter(listInteractor: ItemsListInteractor) : FavouritePresenter {
+        return FavouritePresenter(listInteractor)
+    }
+
+    @Provides
     fun provideLoginPresenter(loginInteractor: LoginInteractor) : LoginPresenter {
         return LoginPresenter(loginInteractor)
     }

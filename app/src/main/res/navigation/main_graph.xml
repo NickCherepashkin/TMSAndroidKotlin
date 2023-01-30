@@ -28,4 +28,9 @@
         android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.home.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.drozdova.tms.tmsandroidkotlin.presentation.view.home.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
 </navigation>

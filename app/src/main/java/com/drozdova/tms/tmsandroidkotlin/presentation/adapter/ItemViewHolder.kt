@@ -6,6 +6,7 @@ import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
+import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,29 +16,19 @@ class ItemViewHolder(
     private val view: ItemBinding,
     private val itemsListener: ItemsListener
 ) : ViewHolder(view.root) {
-    fun bind(item : UserInfo) {
-        var isSelected = false
-        view.itemImage.setBackgroundResource(0)
-        view.itemTitle.text = item.name
-        view.itemDate.text = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(Date())
-        view.itemImageStar.setBackgroundResource(R.drawable.black_star)
+    fun bind(user : User) {
+        view.itemId.text = user.id.toString()
+        view.itemTitle.text = "${user.name} ${user.username}"
+        view.itemDate.text = "contacts: ${user.email}, ${user.phone}"
 
-        view.itemImageStar.setOnClickListener {
-            isSelected = if (!isSelected) {
-                view.itemImageStar.setBackgroundResource(R.drawable.yellow_star)
-                true
-
-            } else {
-                view.itemImageStar.setBackgroundResource(R.drawable.black_star)
-                false
-            }
-            itemsListener.isItemSelected(isSelected)
+        view.itemImageFav.setOnClickListener {
+            itemsListener.onFavClicked(user.id)
         }
 
         itemView.setOnClickListener {
             itemsListener.showItemDetails(
-                item.name,
-                item.username,
+                user.name,
+                user.username,
                 0
             )
         }

@@ -15,6 +15,7 @@ import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsListBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.listener.ItemsListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
+import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListPresenter
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.ListView
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
@@ -52,7 +53,7 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
         context?.let { presenter.getData(it) }
     }
 
-    override fun setData(list: List<UserInfo>) {
+    override fun setData(list: List<User>) {
         adapter.submit(list)
     }
 
@@ -77,14 +78,8 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
             .show()
     }
 
-    override fun isItemSelected(isSelect : Boolean) {
-        val msg : String
-        if (isSelect) {
-            msg = getString(R.string.checked_txt)
-        } else {
-            msg = getString(R.string.not_checked_txt)
-        }
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    override fun onFavClicked(id: Int) {
+        presenter.onFavClicked(id)
     }
 
     override fun showItemDetails(name: String, date: String, imageView: Int) {
