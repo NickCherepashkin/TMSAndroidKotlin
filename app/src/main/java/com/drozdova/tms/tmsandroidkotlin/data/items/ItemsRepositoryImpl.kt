@@ -25,10 +25,10 @@ class ItemsRepositoryImpl @Inject constructor(
                     val response = apiService.getData()
                     response.body()?.let {usersList ->
                         usersList.map {user ->
-                            val users = UsersEntity(user.id, user.name, user.username, user.email, user.phone)
+                            val users = UsersEntity(user.id, name = user.name, username = user.username, email = user.email, phone = user.phone)
                             usersDAO.insertUserEntity(users)
                         }
-                    } ?: emptyList()
+                    }
                 }
             }
         }

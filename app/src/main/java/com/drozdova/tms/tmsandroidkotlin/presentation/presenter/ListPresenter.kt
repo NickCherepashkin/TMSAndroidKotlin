@@ -24,12 +24,13 @@ class   ListPresenter @Inject constructor(
         val exHendler = CoroutineExceptionHandler { _, exception ->
             Log.w("ERR", exception)
         }
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Main + exHendler).launch {
             CoroutineScope(Dispatchers.Main).launch {
+//                listInteractor.getData()
                 try {
                     listInteractor.getData()
                 } catch (e: Exception) {
-                    listView.showErrorMessage(context, "get")
+                    listView.showErrorMessage(context, e.message.toString())
                 }
             }
             CoroutineScope(Dispatchers.Main).launch {
@@ -42,7 +43,6 @@ class   ListPresenter @Inject constructor(
                 }
             }
         }
-
     }
 
     fun goToDetails(name: String, date: String, imageView: Int) {
@@ -58,7 +58,6 @@ class   ListPresenter @Inject constructor(
     fun deleteItem(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             listInteractor.deleteItem(id)
-            listInteractor.showData()
         }
     }
 
