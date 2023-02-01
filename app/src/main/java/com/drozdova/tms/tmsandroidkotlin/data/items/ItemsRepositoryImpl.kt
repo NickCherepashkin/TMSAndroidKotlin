@@ -11,6 +11,8 @@ import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
@@ -23,27 +25,35 @@ class ItemsRepositoryImpl @Inject constructor(
 ) : ItemsRepository {
     override suspend fun getData() {
         return withContext(Dispatchers.IO) {
-            if (!itemsDAO.doesItemsEntityExists()) {
+            itemsDAO.doesItemsEntityExists().collect{
+                if (!it) {
+                    val response = apiService.getData()
+                    Log.w("getData", response.body()?.sampleList.toString())
+                    response.body()?.sampleList?.let {
+                        Log.w("SIZE...", "SIZE = ${it.size.toString()}")
+                        it.map {
+                            val itemssEntity = ItemsEntity((1..999).random(), it.description, it.imageUrl)
+                            itemsDAO.insertItemsEntity(itemssEntity)
+                        }
 
-                val response = apiService.getData()
-                Log.w("getData", response.body()?.sampleList.toString())
-                response.body()?.sampleList?.let {
-                    it.map {
-                        val itemssEntity = ItemsEntity((1..999).random(), it.description, it.imageUrl)
-                        itemsDAO.insertItemsEntity(itemssEntity)
+//                        print("SIZE: ${it.size}")
+                    } ?: kotlin.run {
+                        emptyList()
                     }
-                } ?: kotlin.run {
-                    emptyList()
+
+
                 }
             }
         }
     }
 
-    override suspend fun showData(): List<Item> {
+    override suspend fun showData(): Flow<List<Item>>  {
         return withContext(Dispatchers.IO){
             val itemsEntity = itemsDAO.getItemsEntity()
-            itemsEntity.map {
-                Item(it.description, it.imageUrl)
+            itemsEntity.map {itemsList ->
+                itemsList.map {item ->
+                    Item(item.description, item.imageUrl)
+                }
             }
         }
     }

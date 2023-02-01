@@ -39,9 +39,12 @@ class ItemsFragment : Fragment(), ItemListener {
         adapter = ItemsAdapter(this)
         binding.rvItemsList.adapter = adapter
 
+        Log.w("SIZE observe...", "SIZE = getData()")
         viewModel.getItemslist()
 
         viewModel.itemsList.observe(viewLifecycleOwner) { list ->
+            Log.w("SIZE observe...", "SIZE = itemsList.observe ")
+            Log.w("SIZE observe...", "SIZE = ${list.size}")
             adapter.submit(list)
         }
 
@@ -52,6 +55,7 @@ class ItemsFragment : Fragment(), ItemListener {
                 bundle.putString(BundleConstants.DATE_KEY, item.image)
 
                 navigateWithBundle(item.destination, bundle)
+                viewModel.onItemsBack()
             }
         }
 
@@ -65,6 +69,7 @@ class ItemsFragment : Fragment(), ItemListener {
         }
 
     }
+
 
     override fun itemDetailsClick(description: String, image: String) {
         viewModel.itemDetailsClick(description, image)

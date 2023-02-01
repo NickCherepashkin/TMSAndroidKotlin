@@ -8,6 +8,7 @@ import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,6 +18,8 @@ class ItemsViewModel @Inject constructor(
 ) : ViewModel() {
     private val _itemsList = MutableLiveData<List<Item>>()
     val itemsList : LiveData<List<Item>> = _itemsList
+
+//    val itemsList = flow{emit(interactor.findItem(""))}
 
     private val _bundle = MutableLiveData<ItemList?>()
     val bundle : LiveData<ItemList?> = _bundle
@@ -31,13 +34,19 @@ class ItemsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 interactor.getData()
-                val list = interactor.showData()
-                _itemsList.value = list
-
             } catch (e: java.lang.Exception) {
                 _error.value = e.message.toString()
             }
-
+        }
+        viewModelScope.launch {
+            try {
+                val list = interactor.showData()
+                list.collect{
+                    _itemsList.value = it
+                }
+            } catch (e: java.lang.Exception) {
+                _error.value = e.message.toString()
+            }
         }
     }
 
@@ -47,6 +56,7 @@ class ItemsViewModel @Inject constructor(
 
     fun onItemsBack() {
         _bundle.value = null
+        _itemsList.apply { null }
     }
 
     fun imageClick() {
@@ -65,6 +75,7 @@ class ItemsViewModel @Inject constructor(
             interactor.onFavClicked(description)
         }
     }
+
 }
 
 data class ItemList(
