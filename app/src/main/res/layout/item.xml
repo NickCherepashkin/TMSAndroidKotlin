@@ -47,6 +47,14 @@
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_not_favorite_24"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/item_image_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_delete"/>
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

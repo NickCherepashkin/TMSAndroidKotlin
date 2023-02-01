@@ -1,12 +1,11 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.presenter
 
 import android.content.Context
+import android.util.Log
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.items.ItemsListInteractor
 import com.drozdova.tms.tmsandroidkotlin.utils.ErrorMessages
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,24 +21,51 @@ class   ListPresenter @Inject constructor(
     }
 
     fun getData(context: Context) {
+        val exHendler = CoroutineExceptionHandler { _, exception ->
+            Log.w("ERR", exception)
+        }
         CoroutineScope(Dispatchers.Main).launch {
-            try {
-                listInteractor.getData()
-                val list = listInteractor.showData()
-                listView.setData(list)
-            } catch (e: Exception) {
-                listView.showErrorMessage(context, ErrorMessages.ERROR_MSG_NO_DATA)
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    listInteractor.getData()
+                } catch (e: Exception) {
+                    listView.showErrorMessage(context, "get")
+                }
+            }
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                    listInteractor.showData().collect{list ->
+                        listView.setData(list)
+                    }
+                } catch (e: Exception) {
+                    listView.showErrorMessage(context, "show")
+                }
             }
         }
+
     }
 
     fun goToDetails(name: String, date: String, imageView: Int) {
         listView.goToDetails(name, date, imageView, R.id.action_itemsListFragment_to_detailsFragment)
     }
 
-    fun onFavClicked(id: Int) : Boolean {
+    fun onFavClicked(id: Int){
         CoroutineScope(Dispatchers.IO).launch{
-             listInteractor.onFavClicked(id)
+            listInteractor.onFavClicked(id)
         }
+    }
+
+    fun deleteItem(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            listInteractor.deleteItem(id)
+            listInteractor.showData()
+        }
+    }
+
+    fun findFav(id: Int) : Boolean {
+        return true
+//        return CoroutineScope(Dispatchers.IO).async {
+//            true
+//        }
     }
 }

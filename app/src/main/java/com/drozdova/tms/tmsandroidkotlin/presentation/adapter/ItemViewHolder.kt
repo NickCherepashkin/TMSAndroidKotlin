@@ -23,11 +23,8 @@ class ItemViewHolder(
 
         view.itemImageFav.setOnClickListener {
             itemsListener.onFavClicked(user.id)
-//            val favAdd = itemsListener.onFavClicked(user.id)
-//            view.itemImageFav.background = when() {
-//                true -> R.drawable.ic_favorite_24
-//                false -> R.drawable.ic_not_favorite_24
-//            }
+            val isFav = itemsListener.findFav(user.id)
+            view.itemImageFav.setBackgroundResource(R.drawable.ic_favorite_24)
         }
 
         itemView.setOnClickListener {
@@ -36,6 +33,10 @@ class ItemViewHolder(
                 user.username,
                 0
             )
+        }
+
+        view.itemImageDelete.setOnClickListener() {
+            itemsListener.deleteItem(user.id)
         }
     }
 }

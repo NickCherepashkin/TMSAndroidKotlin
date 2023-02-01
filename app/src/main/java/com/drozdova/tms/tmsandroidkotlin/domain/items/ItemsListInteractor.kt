@@ -4,6 +4,7 @@ import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.FavUser
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.Item
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ItemsListInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
@@ -11,16 +12,20 @@ class ItemsListInteractor @Inject constructor(private val itemsRepository: Items
         itemsRepository.getData()
     }
 
-    suspend fun onFavClicked(id: Int) : Boolean{
-        return itemsRepository.favClicked(id)
+    suspend fun onFavClicked(id: Int){
+        itemsRepository.favClicked(id)
     }
 
-    suspend fun showData(): List<User> {
+    suspend fun showData(): Flow<List<User>> {
         return itemsRepository.showData()
     }
 
     suspend fun showFavData(): List<FavUser> {
         return itemsRepository.getFavourites()
+    }
+
+    suspend fun deleteItem(id: Int) {
+        itemsRepository.deleteItem(id)
     }
 
 //    suspend fun deleteItemByDescription(description: String) {

@@ -78,11 +78,19 @@ class ItemsListFragment : Fragment(), ListView, ItemsListener {
             .show()
     }
 
-    override fun onFavClicked(id: Int) : Boolean {
+    override fun onFavClicked(id: Int){
         return presenter.onFavClicked(id)
     }
 
     override fun showItemDetails(name: String, date: String, imageView: Int) {
         presenter.goToDetails(name, date, imageView)
+    }
+
+    override fun findFav(id: Int): Boolean {
+        return true
+    }
+
+    override fun deleteItem(id: Int) {
+        presenter.deleteItem(id)
     }
 }
