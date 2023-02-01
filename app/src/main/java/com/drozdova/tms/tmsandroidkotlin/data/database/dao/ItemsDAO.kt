@@ -3,6 +3,7 @@ package com.drozdova.tms.tmsandroidkotlin.data.database.dao
 import android.content.ClipDescription
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.drozdova.tms.tmsandroidkotlin.data.database.FavEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.ItemsEntity
@@ -11,13 +12,13 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemsDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItemsEntity(itemsEntity: ItemsEntity)
 
     @Query("Select * from ItemsEntity")
     fun getItemsEntity(): Flow<List<ItemsEntity>>
 
-    @Query("Select(Select COUNT(*) from ItemsEntity) != 0")
+    @Query("Select COUNT(*) as count from ItemsEntity")
     fun doesItemsEntityExists(): Flow<Boolean>
 
     @Query("Delete from ItemsEntity where description = :description")

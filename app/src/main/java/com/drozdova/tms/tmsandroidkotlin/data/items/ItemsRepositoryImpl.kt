@@ -32,7 +32,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     response.body()?.sampleList?.let {
                         Log.w("SIZE...", "SIZE = ${it.size.toString()}")
                         it.map {
-                            val itemssEntity = ItemsEntity((1..999).random(), it.description, it.imageUrl)
+                            val itemssEntity = ItemsEntity(it.description, it.imageUrl)
                             itemsDAO.insertItemsEntity(itemssEntity)
                         }
 
@@ -40,8 +40,6 @@ class ItemsRepositoryImpl @Inject constructor(
                     } ?: kotlin.run {
                         emptyList()
                     }
-
-
                 }
             }
         }
@@ -76,7 +74,7 @@ class ItemsRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
             val itemEntity = itemsDAO.findItemEntityByDescription(description)
             itemsDAO.insertfavEntity(
-                FavEntity(itemEntity.id,
+                FavEntity(/*itemEntity.id,*/
                 itemEntity.description,
                 itemEntity.imageUrl)
             )

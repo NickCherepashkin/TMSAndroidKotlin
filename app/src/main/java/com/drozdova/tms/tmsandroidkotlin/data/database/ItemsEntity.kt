@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "ItemsEntity")
 data class ItemsEntity(
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "id")
-    val id: Int,
+//    @ColumnInfo(name = "id")
+//    val id: Int,
+    @PrimaryKey
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "imageUrl")
