@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
@@ -15,6 +16,7 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemListener {
@@ -40,7 +42,24 @@ class ItemsFragment : Fragment(), ItemListener {
         binding.rvItemsList.adapter = adapter
 
         Log.w("SIZE observe...", "SIZE = getData()")
-        viewModel.getItemslist()
+
+
+        // Способ 1
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getData.collect()
+//        }
+
+        // Способ 2
+//        viewModel.getData()
+//        viewModel.triger.observe(viewLifecycleOwner){
+//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//                it.collect()
+//            }
+//        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.getDataSimple()
+        }
 
         viewModel.itemsList.observe(viewLifecycleOwner) { list ->
             Log.w("SIZE observe...", "SIZE = itemsList.observe ")

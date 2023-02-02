@@ -8,6 +8,8 @@ import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +23,14 @@ class ItemsViewModel @Inject constructor(
 
 //    val itemsList = flow{emit(interactor.findItem(""))}
 
+    val items = flow{emit(interactor.getData())}
+
+    // Способ 1
+    val getData = flow{emit(interactor.getData())}
+
+    private val _triger = MutableLiveData<Flow<Unit>>()
+    val triger = _triger
+
     private val _bundle = MutableLiveData<ItemList?>()
     val bundle : LiveData<ItemList?> = _bundle
 
@@ -30,25 +40,38 @@ class ItemsViewModel @Inject constructor(
     private val _error = MutableLiveData<String?>()
     val error : LiveData<String?> = _error
 
-    fun getItemslist() {
-        viewModelScope.launch {
-            try {
-                interactor.getData()
-            } catch (e: java.lang.Exception) {
-                _error.value = e.message.toString()
-            }
-        }
-        viewModelScope.launch {
-            try {
-                val list = interactor.showData()
-                list.collect{
-                    _itemsList.value = it
-                }
-            } catch (e: java.lang.Exception) {
-                _error.value = e.message.toString()
-            }
-        }
+    // Способ 2
+//    fun getData() {
+//        viewModelScope.launch {
+//            _triger.value = flow {emit(interactor.getData())}
+//        }
+//    }
+
+    suspend fun getDataSimple() {
+        interactor.getData()
     }
+
+//    fun getItemslist() {
+//        viewModelScope.launch {
+//            try {
+//                interactor.getData()
+//            } catch (e: java.lang.Exception) {
+//                _error.value = e.message.toString()
+//            }
+//        }
+//        viewModelScope.launch {
+//            try {
+//                val list = interactor.showData()
+//                list.collect{
+//                    _itemsList.value = it
+//                }
+//            } catch (e: java.lang.Exception) {
+//                _error.value = e.message.toString()
+//            }
+//        }
+//    }
+
+
 
     fun itemDetailsClick(description: String, image: String) {
         _bundle.value = ItemList(description, image, R.id.action_itemsFragment_to_detailsFragment)
