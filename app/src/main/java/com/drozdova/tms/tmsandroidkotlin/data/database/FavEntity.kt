@@ -6,9 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "favEntity")
 data class FavEntity(
-//    @PrimaryKey(autoGenerate = false)
-//    @ColumnInfo(name = "id")
-//    val id: Int,
     @PrimaryKey
     @ColumnInfo(name = "description")
     val description: String,

@@ -27,5 +27,9 @@ class ItemViewHolder(
         view.delete.setOnClickListener {
             itemListener.onDeleteClick(item.description)
         }
+
+        view.fav.setOnClickListener{
+            itemListener.onFavClicked(item.description)
+        }
     }
 }

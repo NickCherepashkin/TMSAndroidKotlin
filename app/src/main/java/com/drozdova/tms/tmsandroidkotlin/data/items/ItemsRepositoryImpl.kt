@@ -35,8 +35,6 @@ class ItemsRepositoryImpl @Inject constructor(
                             val itemssEntity = ItemsEntity(it.description, it.imageUrl)
                             itemsDAO.insertItemsEntity(itemssEntity)
                         }
-
-//                        print("SIZE: ${it.size}")
                     } ?: kotlin.run {
                         emptyList()
                     }
@@ -73,10 +71,8 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun favClicked(description: String) {
         return withContext(Dispatchers.IO) {
             val itemEntity = itemsDAO.findItemEntityByDescription(description)
-            itemsDAO.insertfavEntity(
-                FavEntity(/*itemEntity.id,*/
-                itemEntity.description,
-                itemEntity.imageUrl)
+            itemsDAO.insertFavEntity(
+                FavEntity(itemEntity.description, itemEntity.imageUrl)
             )
         }
     }

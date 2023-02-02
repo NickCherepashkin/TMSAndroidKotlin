@@ -65,9 +65,9 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
         val random = (1..5).random()
         if(random == 1) {
-            navGraf.startDestination = R.id.loginFragment
+            navGraf.setStartDestination(R.id.loginFragment)
         } else {
-            navGraf.startDestination = R.id.homeFragment
+            navGraf.setStartDestination(R.id.homeFragment)
         }
 
         return  navGraf

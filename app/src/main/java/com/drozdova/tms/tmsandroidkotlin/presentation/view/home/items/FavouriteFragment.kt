@@ -13,8 +13,9 @@ import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items.adapter.FavouriteViewAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.FavouriteItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavouriteFragment : Fragment() {
 
     private var _binding : FragmentFavouriteBinding? = null
@@ -27,9 +28,9 @@ class FavouriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false)
+    ): View {
+        _binding = FragmentFavouriteBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,11 +40,10 @@ class FavouriteFragment : Fragment() {
         binding.rvFavItemsList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavItemsList.adapter = favAdapter
 
-        viewModel.fav.observe(viewLifecycleOwner) {
+        viewModel.getFav()
 
+        viewModel.fav.observe(viewLifecycleOwner) {favList ->
+            favAdapter.submit(favList)
         }
-
     }
-
-
 }

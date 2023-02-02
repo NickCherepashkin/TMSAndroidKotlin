@@ -1,5 +1,6 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +24,7 @@ class FavouriteItemsViewModel @Inject constructor(
                 val favList = itemsInteractor.getFav()
                 _fav.value = favList
             } catch (e: java.lang.Exception) {
-
+                Log.w("Fav error", e.toString())
             }
         }
     }

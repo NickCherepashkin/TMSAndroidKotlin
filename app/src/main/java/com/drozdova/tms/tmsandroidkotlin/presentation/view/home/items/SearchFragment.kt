@@ -14,7 +14,9 @@ import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentSearchBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.SearchViewModel
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private var _binding : FragmentSearchBinding? = null
@@ -26,7 +28,6 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
@@ -43,7 +44,6 @@ class SearchFragment : Fragment() {
                 viewModel.findItem(p0 ?: "")
                 return false
             }
-
         })
 
         viewModel.item.observe(viewLifecycleOwner) {

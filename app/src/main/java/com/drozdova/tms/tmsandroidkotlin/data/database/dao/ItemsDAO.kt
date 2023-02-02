@@ -18,7 +18,7 @@ interface ItemsDAO {
     @Query("Select * from ItemsEntity")
     fun getItemsEntity(): Flow<List<ItemsEntity>>
 
-    @Query("Select COUNT(*) as count from ItemsEntity")
+    @Query("Select(Select COUNT(*) from ItemsEntity) != 0" )
     fun doesItemsEntityExists(): Flow<Boolean>
 
     @Query("Delete from ItemsEntity where description = :description")
@@ -27,9 +27,9 @@ interface ItemsDAO {
     @Query("SELECT * FROM ItemsEntity where description = :searchText")
     fun findItemEntityByDescription(searchText: String): ItemsEntity
 
-    @Insert
-    fun insertfavEntity(favEntity: FavEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavEntity(favEntity: FavEntity)
 
-    @Query(("SELECT * FROM favEntity"))
+    @Query("SELECT * FROM favEntity")
     fun getFavEntities(): List<FavEntity>
 }
