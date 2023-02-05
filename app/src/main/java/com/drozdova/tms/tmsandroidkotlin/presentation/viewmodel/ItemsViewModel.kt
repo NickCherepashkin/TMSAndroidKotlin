@@ -28,8 +28,8 @@ class ItemsViewModel @Inject constructor(
     // Способ 1
     val getData = flow{emit(interactor.getData())}
 
-    private val _triger = MutableLiveData<Flow<Unit>>()
-    val triger = _triger
+//    private val _triger = MutableLiveData<Flow<Unit>>()
+//    val triger = _triger
 
     private val _bundle = MutableLiveData<ItemList?>()
     val bundle : LiveData<ItemList?> = _bundle
@@ -47,9 +47,9 @@ class ItemsViewModel @Inject constructor(
 //        }
 //    }
 
-    suspend fun getDataSimple() {
-        interactor.getData()
-    }
+//    suspend fun getDataSimple() {
+//        interactor.getData()
+//    }
 
 //    fun getItemslist() {
 //        viewModelScope.launch {

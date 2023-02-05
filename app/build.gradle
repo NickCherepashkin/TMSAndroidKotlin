@@ -74,4 +74,9 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.0-alpha04"
     implementation "androidx.room:room-ktx:2.4.0-alpha04"
 
+//    implementation "androidx.work:work-ktx:2.7.1"
+    // https://mvnrepository.com/artifact/androidx.work/work-runtime
+    implementation group: 'androidx.work', name: 'work-runtime', version: '2.7.1'
+
+
 }

@@ -57,9 +57,9 @@ class ItemsFragment : Fragment(), ItemListener {
 //            }
 //        }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            viewModel.getDataSimple()
+//        }
 
         viewModel.itemsList.observe(viewLifecycleOwner) { list ->
             Log.w("SIZE observe...", "SIZE = itemsList.observe ")

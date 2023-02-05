@@ -28,6 +28,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <service android:name=".presentation.view.service.MyMediaPlayer" />
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove">
+
+        </provider>
     </application>
 
 </manifest>
