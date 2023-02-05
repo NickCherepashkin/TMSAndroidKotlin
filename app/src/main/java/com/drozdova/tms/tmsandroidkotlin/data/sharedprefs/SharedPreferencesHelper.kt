@@ -19,10 +19,18 @@ class SharedPreferencesHelper @Inject constructor(
     }
 
     fun checkUserExists() : Boolean {
-        val name = sharedPreferences.getString(USER_NAME, EMPTY_STRING)
-        val password = sharedPreferences.getString(USER_PASSWORD, EMPTY_STRING)
+        val name = getLogin()
+        val password = getPass()
 
-        return (!name.isNullOrEmpty() && !password.isNullOrEmpty())
+        return (!name.isEmpty() && !password.isEmpty())
+    }
+
+    fun getLogin() : String {
+        return sharedPreferences.getString(USER_NAME, EMPTY_STRING) ?: EMPTY_STRING
+    }
+
+    fun getPass() : String {
+        return sharedPreferences.getString(USER_PASSWORD, EMPTY_STRING) ?: EMPTY_STRING
     }
 
     fun logout() {

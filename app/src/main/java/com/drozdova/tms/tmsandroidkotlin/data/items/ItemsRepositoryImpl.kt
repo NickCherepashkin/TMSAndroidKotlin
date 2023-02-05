@@ -18,6 +18,7 @@ class ItemsRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val usersDAO: UsersDAO
 ): ItemsRepository {
+
     override suspend fun getData(){
         return withContext(Dispatchers.IO) {
             usersDAO.doesUsersEntityExists().collect{
@@ -36,20 +37,11 @@ class ItemsRepositoryImpl @Inject constructor(
 
     override suspend fun favClicked(id: Int){
         withContext(Dispatchers.IO){
-//            val findFavUser = usersDAO.findFavUserById(id)
             val usersEntity = usersDAO.findUserById(id)
             usersDAO.insertFavEntity(
                 FavouriteEntity(usersEntity.id, usersEntity.name, usersEntity.username,
                     usersEntity.email, usersEntity.phone)
             )
-//            if (findFavUser == null) {
-//                return@withContext false
-//            } else {
-//
-//
-//                return@withContext true
-//            }
-
         }
     }
     override suspend fun showData(): Flow<List<User>> {

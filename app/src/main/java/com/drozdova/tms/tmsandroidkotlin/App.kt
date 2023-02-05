@@ -17,8 +17,11 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class App : Application(), Configuration.Provider {
+
     @Inject lateinit var workFactory: HiltWorkerFactory
-    val appScope = CoroutineScope(Dispatchers.Default)
+
+    private val appScope = CoroutineScope(Dispatchers.Default)
+
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
             .setWorkerFactory(workFactory)

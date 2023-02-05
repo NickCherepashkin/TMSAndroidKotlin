@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.drozdova.tms.tmsandroidkotlin.data.auth.LoginRepositoryImpl
 import com.drozdova.tms.tmsandroidkotlin.data.items.ItemsRepositoryImpl
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -16,13 +17,13 @@ import kotlinx.coroutines.launch
 class PeriodWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted parameters: WorkerParameters,
-    val itemsRepositoryImpl: ItemsRepositoryImpl
+    val loginRepositoryImpl: LoginRepositoryImpl
 ) : CoroutineWorker(context, parameters) {
     override suspend fun doWork(): Result {
         try {
             CoroutineScope(Dispatchers.IO).launch {
                 Log.w("login","login not empty and write in db")
-                itemsRepositoryImpl.getFavourites()
+                loginRepositoryImpl.saveUserInDB()
             }
         } catch (e: Exception) {
             Log.w("No",e.toString())

@@ -6,12 +6,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.drozdova.tms.tmsandroidkotlin.data.database.FavouriteEntity
+import com.drozdova.tms.tmsandroidkotlin.data.database.LoginEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.UsersEntity
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.FavUser
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UsersDAO {
+    @Insert
+    fun saveLoginUser(loginEntity: LoginEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUserEntity(usersEntity: UsersEntity)
 

@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.drozdova.tms.tmsandroidkotlin.data.database.FavouriteEntity
+import com.drozdova.tms.tmsandroidkotlin.data.database.LoginEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.UsersEntity
 
-@Database(entities = [UsersEntity::class, FavouriteEntity::class], version = 1, exportSchema = false)
+@Database(entities = [UsersEntity::class, FavouriteEntity::class, LoginEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun getUsersDAO(): UsersDAO
+    abstract fun getLoginDAO(): LoginDAO
 
     companion object {
         private const val DATABASE_NAME = "app_db"
