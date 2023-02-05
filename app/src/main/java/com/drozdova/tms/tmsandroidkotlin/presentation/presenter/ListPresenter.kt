@@ -26,7 +26,6 @@ class   ListPresenter @Inject constructor(
         }
         CoroutineScope(Dispatchers.Main + exHendler).launch {
             CoroutineScope(Dispatchers.Main).launch {
-//                listInteractor.getData()
                 try {
                     listInteractor.getData()
                 } catch (e: Exception) {
