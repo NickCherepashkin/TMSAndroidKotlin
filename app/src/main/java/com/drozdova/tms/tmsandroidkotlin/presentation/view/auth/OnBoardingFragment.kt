@@ -31,7 +31,8 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnShowList.setOnClickListener {
-            viewModel.onBtnClick()
+            binding.btnShowList.isPressed = !it.isPressed
+//            viewModel.onBtnClick()
         }
 
         viewModel.btnShowList.observe(viewLifecycleOwner) {

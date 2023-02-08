@@ -49,7 +49,7 @@
             android:id="@+id/fav"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/ic_add_fav"
+            android:background="@drawable/fav_selected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/delete"
             app:layout_constraintTop_toTopOf="parent" />
