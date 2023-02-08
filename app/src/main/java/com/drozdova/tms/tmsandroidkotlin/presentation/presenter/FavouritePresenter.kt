@@ -26,4 +26,14 @@ class FavouritePresenter @Inject constructor(
             }
         }
     }
+
+    fun deleteFavItem(id: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                listInteractor.deleteFavItem(id)
+            } catch (e: Exception) {
+                Log.w("FAV ERROR", e.toString())
+            }
+        }
+    }
 }

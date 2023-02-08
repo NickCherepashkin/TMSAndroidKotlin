@@ -16,5 +16,7 @@ data class UsersEntity (
     @ColumnInfo(name = "email")
     val email: String,
     @ColumnInfo(name = "phone")
-    val phone: String
+    val phone: String,
+    @ColumnInfo(name = "favorite")
+    var favorite: Boolean
 )

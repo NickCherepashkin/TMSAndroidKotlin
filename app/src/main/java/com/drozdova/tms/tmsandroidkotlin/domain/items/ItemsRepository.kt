@@ -11,4 +11,5 @@ interface ItemsRepository {
     suspend fun findUserById(id: Int): User
     suspend fun getFavourites(): List<FavUser>
     suspend fun deleteItem(id: Int)
+    suspend fun deleteFavItem(id:Int)
 }

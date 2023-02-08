@@ -28,6 +28,10 @@ class ItemsListInteractor @Inject constructor(private val itemsRepository: Items
         itemsRepository.deleteItem(id)
     }
 
+    suspend fun deleteFavItem(id: Int) {
+        itemsRepository.deleteFavItem(id)
+    }
+
 //    suspend fun deleteItemByDescription(description: String) {
 //        itemsRepository.deleteItemByDescription(description)
 //    }

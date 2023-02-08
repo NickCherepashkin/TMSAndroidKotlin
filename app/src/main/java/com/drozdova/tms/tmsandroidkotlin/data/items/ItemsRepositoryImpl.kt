@@ -26,7 +26,7 @@ class ItemsRepositoryImpl @Inject constructor(
                     val response = apiService.getData()
                     response.body()?.let {usersList ->
                         usersList.map {user ->
-                            val users = UsersEntity(user.id, name = user.name, username = user.username, email = user.email, phone = user.phone)
+                            val users = UsersEntity(user.id, name = user.name, username = user.username, email = user.email, phone = user.phone, false)
                             usersDAO.insertUserEntity(users)
                         }
                     }
@@ -38,17 +38,28 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun favClicked(id: Int){
         withContext(Dispatchers.IO){
             val usersEntity = usersDAO.findUserById(id)
-            usersDAO.insertFavEntity(
-                FavouriteEntity(usersEntity.id, usersEntity.name, usersEntity.username,
-                    usersEntity.email, usersEntity.phone)
-            )
+            if(!usersEntity.favorite) {
+                usersEntity.favorite = true
+                usersDAO.insertFavEntity(
+                    FavouriteEntity(usersEntity.id, usersEntity.name, usersEntity.username,
+                        usersEntity.email, usersEntity.phone)
+                )
+            } else {
+                usersEntity.favorite = false
+                usersDAO.deleteFavItem(id)
+            }
+
+            usersDAO.updateFavState(usersEntity)
         }
     }
+
+
+
     override suspend fun showData(): Flow<List<User>> {
         return  withContext(Dispatchers.IO){
             usersDAO.getUsersEntity().map {usersEntity ->
                 usersEntity.map {
-                    User(it.id, it.name, it.username, it.email, it.phone)
+                    User(it.id, it.name, it.username, it.email, it.phone, it.favorite)
                 }
             }
         }
@@ -57,7 +68,7 @@ class ItemsRepositoryImpl @Inject constructor(
     override suspend fun findUserById(id: Int): User {
         return withContext(Dispatchers.IO){
             val user = usersDAO.findUserById(id)
-            User(user.id, user.name, user.username, user.email, user.phone)
+            User(user.id, user.name, user.username, user.email, user.phone, user.favorite)
         }
     }
 
@@ -76,4 +87,12 @@ class ItemsRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun deleteFavItem(id: Int) {
+        withContext(Dispatchers.IO) {
+            val usersEntity = usersDAO.findUserById(id)
+            usersEntity.favorite = false
+            usersDAO.deleteFavItem(id)
+            usersDAO.updateFavState(usersEntity)
+        }
+    }
 }

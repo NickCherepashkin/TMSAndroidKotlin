@@ -41,7 +41,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/fav_item_image_star"
+            android:id="@+id/fav_item_delete"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="10dp"

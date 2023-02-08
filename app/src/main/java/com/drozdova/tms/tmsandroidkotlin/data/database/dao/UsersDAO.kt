@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.drozdova.tms.tmsandroidkotlin.data.database.FavouriteEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.LoginEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.UsersEntity
@@ -39,4 +40,10 @@ interface UsersDAO {
 
     @Query("DELETE FROM users where id = :id")
     fun deleteItem(id: Int)
+
+    @Query("DELETE FROM favourite where id = :id")
+    fun deleteFavItem(id: Int)
+
+    @Update
+    fun updateFavState(usersEntity: UsersEntity)
 }

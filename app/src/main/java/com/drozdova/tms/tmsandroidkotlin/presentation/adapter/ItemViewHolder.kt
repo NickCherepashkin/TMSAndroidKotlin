@@ -10,8 +10,6 @@ import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
 import java.text.SimpleDateFormat
 import java.util.*
 
-private const val DATE_FORMAT = "hh:mm:ss a"
-
 class ItemViewHolder(
     private val view: ItemBinding,
     private val itemsListener: ItemsListener
@@ -20,11 +18,11 @@ class ItemViewHolder(
         view.itemId.text = user.id.toString()
         view.itemTitle.text = "${user.name} ${user.username}"
         view.itemDate.text = "contacts: ${user.email}, ${user.phone}"
+        view.itemImageFav.isSelected = user.favorite
 
         view.itemImageFav.setOnClickListener {
+            view.itemImageFav.isSelected = !it.isSelected
             itemsListener.onFavClicked(user.id)
-            val isFav = itemsListener.findFav(user.id)
-            view.itemImageFav.setBackgroundResource(R.drawable.ic_favorite_24)
         }
 
         itemView.setOnClickListener {

@@ -11,6 +11,7 @@ import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentFavouriteBinding
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsListBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.adapter.FavouriteAdapter
+import com.drozdova.tms.tmsandroidkotlin.presentation.listener.FavItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.FavUser
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.User
 import com.drozdova.tms.tmsandroidkotlin.presentation.presenter.FavouritePresenter
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FavouriteFragment : Fragment(), FavouriteView {
+class FavouriteFragment : Fragment(), FavouriteView, FavItemListener {
     private var _bindingList : FragmentFavouriteBinding? = null
     val bindingList get() = _bindingList!!
 
@@ -40,7 +41,7 @@ class FavouriteFragment : Fragment(), FavouriteView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FavouriteAdapter()
+        adapter = FavouriteAdapter(this)
         bindingList.rvFavList.adapter = adapter
         bindingList.rvFavList.layoutManager = LinearLayoutManager(context)
 
@@ -50,5 +51,9 @@ class FavouriteFragment : Fragment(), FavouriteView {
 
     override fun setData(list: List<FavUser>) {
         adapter.submit(list)
+    }
+
+    override fun deleteFavItem(id: Int) {
+        presenter.deleteFavItem(id)
     }
 }

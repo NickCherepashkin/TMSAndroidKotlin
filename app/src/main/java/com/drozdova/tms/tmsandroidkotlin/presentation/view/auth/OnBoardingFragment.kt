@@ -47,6 +47,4 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         presenter.saveVisibility(false)
         super.onDestroy()
     }
-
-
 }

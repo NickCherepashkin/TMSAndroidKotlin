@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drozdova.tms.tmsandroidkotlin.data.model.UserInfo
 import com.drozdova.tms.tmsandroidkotlin.databinding.FavItemBinding
+import com.drozdova.tms.tmsandroidkotlin.presentation.listener.FavItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.model.FavUser
 
-class FavouriteAdapter : RecyclerView.Adapter<FavouriteViewHolder>() {
+class FavouriteAdapter(private val favItemListener: FavItemListener) : RecyclerView.Adapter<FavouriteViewHolder>() {
     private var itemsList = mutableListOf<FavUser>()
 
     fun submit(itemsList: List<FavUser>) {
@@ -17,7 +18,7 @@ class FavouriteAdapter : RecyclerView.Adapter<FavouriteViewHolder>() {
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteViewHolder {
         val view = FavItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavouriteViewHolder(view)
+        return FavouriteViewHolder(view, favItemListener)
     }
 
     override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
