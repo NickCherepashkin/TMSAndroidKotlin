@@ -5,16 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drozdova.tms.tmsandroidkotlin.R
-import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.drozdova.tms.tmsandroidkotlin.model.Item
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+
 class ItemsViewModel @Inject constructor(
     private val interactor: ItemsInteractor
 ) : ViewModel() {

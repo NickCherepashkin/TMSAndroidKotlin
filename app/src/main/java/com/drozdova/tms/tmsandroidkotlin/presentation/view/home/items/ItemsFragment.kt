@@ -2,28 +2,28 @@ package com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
+import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
-@AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemListener {
+
+class ItemsFragment : BaseFragment(), ItemListener {
     private var _binding : FragmentItemsBinding? = null
     val binding get() = _binding!!
 
-    private val viewModel : ItemsViewModel by viewModels()
+    private val viewModel : ItemsViewModel by viewModels{viewModelFactory}
 
     private lateinit var adapter: ItemsAdapter
 
@@ -37,6 +37,8 @@ class ItemsFragment : Fragment(), ItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).appComponent.inject(this)
 
         adapter = ItemsAdapter(this)
         binding.rvItemsList.adapter = adapter

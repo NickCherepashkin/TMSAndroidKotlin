@@ -6,31 +6,29 @@ import android.animation.ValueAnimator
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
-import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentSearchBinding
-import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
+import com.drozdova.tms.tmsandroidkotlin.di.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.SearchViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class SearchFragment : Fragment() {
+
+class SearchFragment : BaseFragment(){
 
     private var _binding : FragmentSearchBinding? = null
     val binding get() = _binding!!
 
-    private val viewModel : SearchViewModel by viewModels()
+    private val viewModel : SearchViewModel by viewModels{viewModelFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +41,8 @@ class SearchFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).appComponent.inject(this)
 
         val btn = Button(context)
         btn.background = context?.getDrawable(R.drawable.android)

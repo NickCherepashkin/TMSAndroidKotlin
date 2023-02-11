@@ -7,11 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drozdova.tms.tmsandroidkotlin.domain.ItemsInteractor
 import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+
 class FavouriteItemsViewModel @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ): ViewModel() {

@@ -1,36 +1,39 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentDetailsBinding
+import com.drozdova.tms.tmsandroidkotlin.di.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.DetailsViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class DetailsFragment : Fragment() {
+
+class DetailsFragment : BaseFragment() {
     private var _binding : FragmentDetailsBinding? = null
     val binding get() = _binding!!
 
-    private val viewModel : DetailsViewModel by viewModels()
+    private val viewModel : DetailsViewModel by viewModels{viewModelFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailsBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).appComponent.inject(this)
 
         val bundle = arguments
         bundle?.let { safeBundle ->

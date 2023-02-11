@@ -5,11 +5,8 @@ import com.drozdova.tms.tmsandroidkotlin.data.database.dao.ItemsDAO
 import com.drozdova.tms.tmsandroidkotlin.data.database.dao.ItemsDataBase
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
 class DataBAseModule {
     @Provides
     fun providesItemsDAO(itemsDataBase: ItemsDataBase): ItemsDAO {

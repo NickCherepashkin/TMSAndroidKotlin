@@ -1,8 +1,20 @@
 package com.drozdova.tms.tmsandroidkotlin.di
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.drozdova.tms.tmsandroidkotlin.di.component.AppComponent
+import dagger.Component
 
-@HiltAndroidApp
 class App : Application() {
+
+    lateinit var appComponent: AppComponent
+
+    fun providesAppCmponent() : AppComponent {
+//        appComponent = DaggerAppComponent
+//            .builder()
+//            .appModule(AppModule(this))
+//            .build()
+
+        return appComponent
+    }
+
 }

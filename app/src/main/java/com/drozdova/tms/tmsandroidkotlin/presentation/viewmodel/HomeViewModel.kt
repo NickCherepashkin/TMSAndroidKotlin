@@ -7,11 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.domain.AuthInteractor
 import com.drozdova.tms.tmsandroidkotlin.model.UserModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+
 class HomeViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ): ViewModel() {
