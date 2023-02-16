@@ -41,29 +41,9 @@ class ItemsFragment : Fragment(), ItemListener {
         adapter = ItemsAdapter(this)
         binding.rvItemsList.adapter = adapter
 
-        Log.w("SIZE observe...", "SIZE = getData()")
-
-
-        // Способ 1
-//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//            viewModel.getData.collect()
-//        }
-
-        // Способ 2
-//        viewModel.getData()
-//        viewModel.triger.observe(viewLifecycleOwner){
-//            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-//                it.collect()
-//            }
-//        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
+        viewModel.getData()
 
         viewModel.itemsList.observe(viewLifecycleOwner) { list ->
-            Log.w("SIZE observe...", "SIZE = itemsList.observe ")
-            Log.w("SIZE observe...", "SIZE = ${list.size}")
             adapter.submit(list)
         }
 

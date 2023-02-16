@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -74,4 +76,13 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.0-alpha04"
     implementation "androidx.room:room-ktx:2.4.0-alpha04"
 
+    // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.21'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    // https://mvnrepository.com/artifact/androidx.room/room-rxjava2
+    implementation group: 'androidx.room', name: 'room-rxjava2', version: '2.4.3'
+
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

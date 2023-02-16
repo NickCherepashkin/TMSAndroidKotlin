@@ -3,15 +3,16 @@ package com.drozdova.tms.tmsandroidkotlin.domain
 import com.drozdova.tms.tmsandroidkotlin.model.Item
 import com.drozdova.tms.tmsandroidkotlin.domain.repository.ItemsRepository
 import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.Completable
+import io.reactivex.Observable
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
-    suspend fun getData(){
-        itemsRepository.getData()
+    fun getData() : Completable {
+        return itemsRepository.getData()
     }
 
-    suspend fun showData(): Flow<List<Item>> {
+    fun showData(): Observable<List<Item>> {
         return itemsRepository.showData()
     }
 

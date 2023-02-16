@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.drozdova.tms.tmsandroidkotlin.data.database.FavEntity
 import com.drozdova.tms.tmsandroidkotlin.data.database.ItemsEntity
 import com.drozdova.tms.tmsandroidkotlin.model.Item
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,10 +17,10 @@ interface ItemsDAO {
     fun insertItemsEntity(itemsEntity: ItemsEntity)
 
     @Query("Select * from ItemsEntity")
-    fun getItemsEntity(): Flow<List<ItemsEntity>>
+    fun getItemsEntity(): Observable<List<ItemsEntity>>
 
     @Query("Select(Select COUNT(*) from ItemsEntity) != 0" )
-    fun doesItemsEntityExists(): Flow<Boolean>
+    fun doesItemsEntityExists(): Observable<Boolean>
 
     @Query("Delete from ItemsEntity where description = :description")
     fun deleteItemByDescription(description: String)
