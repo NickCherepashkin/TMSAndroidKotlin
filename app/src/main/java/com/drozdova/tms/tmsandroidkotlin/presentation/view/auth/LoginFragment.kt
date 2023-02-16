@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentLoginBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.LoginViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigate

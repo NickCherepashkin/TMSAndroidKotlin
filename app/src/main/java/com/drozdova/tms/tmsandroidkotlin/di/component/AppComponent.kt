@@ -1,9 +1,6 @@
 package com.drozdova.tms.tmsandroidkotlin.di.component
 
-import com.drozdova.tms.tmsandroidkotlin.di.AppModule
-import com.drozdova.tms.tmsandroidkotlin.di.DataBAseModule
-import com.drozdova.tms.tmsandroidkotlin.di.DataModule
-import com.drozdova.tms.tmsandroidkotlin.di.DomainModule
+import com.drozdova.tms.tmsandroidkotlin.di.*
 import com.drozdova.tms.tmsandroidkotlin.di.factory.ScreenScope
 import com.drozdova.tms.tmsandroidkotlin.presentation.MainActivity
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.auth.LoginFragment

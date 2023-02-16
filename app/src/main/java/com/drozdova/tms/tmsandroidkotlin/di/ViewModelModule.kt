@@ -1,4 +1,4 @@
-package com.drozdova.tms.tmsandroidkotlin.di.component
+package com.drozdova.tms.tmsandroidkotlin.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,28 +16,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LoginViewModel::class)
-    abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(OnBoardingViewModel::class)
-    abstract fun bindOnBoardingViewModel(viewModel: OnBoardingViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ItemsViewModel::class)
-    abstract fun bindItemsViewModel(viewModel: ItemsViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(DetailsViewModel::class)
     abstract fun bindDetailsViewModel(viewModel: DetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavouriteItemsViewModel::class)
+    abstract fun bindFavouriteItemsViewModel(viewModel: FavouriteItemsViewModel): ViewModel
 
     @Binds
     @IntoMap
@@ -46,8 +31,18 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(FavouriteItemsViewModel::class)
-    abstract fun bindFavoriteViewModel(viewModel: FavouriteItemsViewModel): ViewModel
+    @ViewModelKey(ItemsViewModel::class)
+    abstract fun bindItemsViewModel(viewModel: ItemsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 
     @Binds
     @IntoMap

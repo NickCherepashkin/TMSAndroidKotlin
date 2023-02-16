@@ -13,11 +13,10 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentSearchBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.SearchViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.squareup.picasso.Picasso

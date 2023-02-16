@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentHomeBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.HomeViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.replaceGraph

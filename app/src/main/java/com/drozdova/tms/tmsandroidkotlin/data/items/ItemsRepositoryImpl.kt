@@ -30,13 +30,10 @@ class ItemsRepositoryImpl @Inject constructor(
                     val response = apiService.getData()
                     Log.w("getData", response.body()?.sampleList.toString())
                     response.body()?.sampleList?.let {
-                        Log.w("SIZE...", "SIZE = ${it.size.toString()}")
                         it.map {
                             val itemssEntity = ItemsEntity(it.description, it.imageUrl)
                             itemsDAO.insertItemsEntity(itemssEntity)
                         }
-                    } ?: kotlin.run {
-                        emptyList()
                     }
                 }
             }

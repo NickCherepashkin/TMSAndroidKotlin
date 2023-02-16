@@ -4,11 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.drozdova.tms.tmsandroidkotlin.databinding.FavouriteItemBinding
-import com.drozdova.tms.tmsandroidkotlin.databinding.ItemBinding
 import com.drozdova.tms.tmsandroidkotlin.model.FavouriteModel
-import com.drozdova.tms.tmsandroidkotlin.model.Item
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemViewHolder
-import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 
 class FavouriteViewAdapter : RecyclerView.Adapter<FavouriteViewHolder>() {
     private var _binding : FavouriteItemBinding? = null

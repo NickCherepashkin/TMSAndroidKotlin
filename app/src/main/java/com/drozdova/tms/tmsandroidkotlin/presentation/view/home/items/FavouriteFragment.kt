@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentFavouriteBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items.adapter.FavouriteViewAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.FavouriteItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment

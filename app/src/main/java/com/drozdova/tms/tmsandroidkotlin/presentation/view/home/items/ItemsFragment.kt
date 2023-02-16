@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentItemsBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.adapter.ItemsAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.listener.ItemListener
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.ItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.BundleConstants
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithBundle
+import kotlinx.coroutines.flow.catch
 
 
 class ItemsFragment : BaseFragment(), ItemListener {
@@ -63,10 +63,14 @@ class ItemsFragment : BaseFragment(), ItemListener {
             viewModel.getDataSimple()
         }
 
-        viewModel.itemsList.observe(viewLifecycleOwner) { list ->
-            Log.w("SIZE observe...", "SIZE = itemsList.observe ")
-            Log.w("SIZE observe...", "SIZE = ${list.size}")
-            adapter.submit(list)
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.items.catch {
+                Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }.collect{ flowList ->
+                flowList.collect{ list ->
+                    adapter.submit(list)
+                }
+            }
         }
 
         viewModel.bundle.observe(viewLifecycleOwner) { item ->
@@ -90,7 +94,6 @@ class ItemsFragment : BaseFragment(), ItemListener {
         }
 
     }
-
 
     override fun itemDetailsClick(description: String, image: String) {
         viewModel.itemDetailsClick(description, image)

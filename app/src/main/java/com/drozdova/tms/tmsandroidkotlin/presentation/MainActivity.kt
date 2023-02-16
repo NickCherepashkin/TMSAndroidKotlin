@@ -12,7 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.ActivityMainBinding
-import com.drozdova.tms.tmsandroidkotlin.di.App
+import com.drozdova.tms.tmsandroidkotlin.App
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.MainViewModel
 import javax.inject.Inject
 
@@ -20,8 +20,10 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
+
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel : MainViewModel by viewModels{viewModelFactory}
+
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
 
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
         setContentView(binding.root)
 
-        (applicationContext as App).appComponent.inject(this)
+        (applicationContext as App).provideAppComponent().inject(this)
 
         viewModel.userIsexist()
 

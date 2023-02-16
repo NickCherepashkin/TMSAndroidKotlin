@@ -16,12 +16,11 @@ import javax.inject.Inject
 class ItemsViewModel @Inject constructor(
     private val interactor: ItemsInteractor
 ) : ViewModel() {
-    private val _itemsList = MutableLiveData<List<Item>>()
-    val itemsList : LiveData<List<Item>> = _itemsList
-
+//    private val _itemsList = MutableLiveData<List<Item>>()
+//    val itemsList : LiveData<List<Item>> = _itemsList
 //    val itemsList = flow{emit(interactor.findItem(""))}
 
-    val items = flow{emit(interactor.getData())}
+    val items = flow{emit(interactor.showData())}
 
     // Способ 1
     val getData = flow{emit(interactor.getData())}
@@ -45,9 +44,9 @@ class ItemsViewModel @Inject constructor(
 //        }
 //    }
 
-    suspend fun getDataSimple() {
-        interactor.getData()
-    }
+//    suspend fun getDataSimple() {
+//        interactor.getData()
+//    }
 
 //    fun getItemslist() {
 //        viewModelScope.launch {
@@ -77,7 +76,6 @@ class ItemsViewModel @Inject constructor(
 
     fun onItemsBack() {
         _bundle.value = null
-        _itemsList.apply { null }
     }
 
     fun imageClick() {

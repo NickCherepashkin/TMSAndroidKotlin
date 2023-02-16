@@ -11,9 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.drozdova.tms.tmsandroidkotlin.R
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentOnBoardingBinding
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.OnBoardingViewModel
+import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
 import com.drozdova.tms.tmsandroidkotlin.utils.NavHelper.navigateWithDeletedBackStack
 
-class OnBoardingFragment : Fragment() {
+class OnBoardingFragment : BaseFragment() {
     private var _binding : FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
 
