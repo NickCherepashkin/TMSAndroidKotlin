@@ -59,9 +59,7 @@ class ItemsFragment : BaseFragment(), ItemListener {
 //            }
 //        }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.getDataSimple()
-        }
+//        viewModel.getData()
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.items.catch {

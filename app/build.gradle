@@ -70,6 +70,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.0-alpha04"
 
     // multidex
-    implementation 'com.android.support:multidex:1.0.3'
+//    implementation 'com.android.support:multidex:1.0.3'
 
 }

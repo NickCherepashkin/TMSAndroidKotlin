@@ -1,5 +1,7 @@
 package com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drozdova.tms.tmsandroidkotlin.databinding.FragmentFavouriteBinding
 import com.drozdova.tms.tmsandroidkotlin.App
+import com.drozdova.tms.tmsandroidkotlin.presentation.receiver.AirplaneModeChangeReceiver
+import com.drozdova.tms.tmsandroidkotlin.presentation.receiver.MyBroadcastReceiver
 import com.drozdova.tms.tmsandroidkotlin.presentation.view.home.items.adapter.FavouriteViewAdapter
 import com.drozdova.tms.tmsandroidkotlin.presentation.viewmodel.FavouriteItemsViewModel
 import com.drozdova.tms.tmsandroidkotlin.utils.BaseFragment
@@ -35,6 +39,18 @@ class FavouriteFragment : BaseFragment() {
 
         (requireActivity().applicationContext as App).appComponent.inject(this)
 
+        val receiver = AirplaneModeChangeReceiver()
+        IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
+            requireContext().registerReceiver(receiver, it)
+        }
+
+        val receiver2 = MyBroadcastReceiver()
+        IntentFilter("MY_ACTION").also {
+            requireContext().registerReceiver(receiver2, it)
+        }
+
+        setMessage()
+
         favAdapter = FavouriteViewAdapter()
         binding.rvFavItemsList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavItemsList.adapter = favAdapter
@@ -44,5 +60,11 @@ class FavouriteFragment : BaseFragment() {
         viewModel.fav.observe(viewLifecycleOwner) {favList ->
             favAdapter.submit(favList)
         }
+    }
+
+    private fun setMessage(){
+        val intent = Intent("MY_ACTION")
+        intent.putExtra("KEY", "message")
+        requireContext().sendBroadcast(intent)
     }
 }
