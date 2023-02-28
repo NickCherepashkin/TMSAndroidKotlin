@@ -74,4 +74,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.0-alpha04"
     implementation "androidx.room:room-ktx:2.4.0-alpha04"
 
+    // location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
 }
